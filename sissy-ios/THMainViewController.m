@@ -12,13 +12,13 @@
 #import "NSString+THExtensions.h"
 #import "THSettings.h"
 #import "THLoginViewController.h"
-#import "THGradeResultsViewController.h"
+#import "THGradesOverviewViewController.h"
 
 NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 
 @interface THMainViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *lastFetchLabel;
-@property (nonatomic, weak) IBOutlet UIButton *showGradeResultsButton;
+@property (nonatomic, weak) IBOutlet UIButton *showGradesOverviewButton;
 @property (nonatomic, weak) IBOutlet UIButton *fetchNewGradeResultsSettingButton;
 @property (nonatomic, weak) IBOutlet UIButton *signOutButton;
 @property (nonatomic, weak) IBOutlet UILabel *loggedInLabel;
@@ -35,13 +35,13 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	
 	[UIView performWithoutAnimation:^{
 		[self updateLastFetchLabelWithDate:[THSettings sharedInstance].lastFetchDate];
-		[self updateShowGradeResultsButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
+		[self updateShowGradesOverviewButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
 		[self updateFetchNewGradeResultsSettingButtonWithOption:[THSettings sharedInstance].fetchNewGradeResultsSetting];
 		[self updateSignOutButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
 		[self updateLoggedInLabelWithUsername:[THSettings sharedInstance].username];
 		
 		// Workaround: layoutIfNeeded because performWithoutAnimation is insufficient on UIButtons.
-		[self.showGradeResultsButton layoutIfNeeded];
+		[self.showGradesOverviewButton layoutIfNeeded];
 		[self.fetchNewGradeResultsSettingButton layoutIfNeeded];
 		[self.signOutButton layoutIfNeeded];
 	}];
@@ -67,13 +67,13 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	self.lastFetchLabel.text = [NSString stringWithFormat:NSLocalizedString(@"main.lastFetch", nil), relativeDateString];
 }
 
-- (void)updateShowGradeResultsButtonWithLoggedIn:(BOOL)loggedIn {
+- (void)updateShowGradesOverviewButtonWithLoggedIn:(BOOL)loggedIn {
 	if (loggedIn) {
-		[self.showGradeResultsButton setTitle:NSLocalizedString(@"main.showGradeResults", nil) forState:UIControlStateNormal];
-		self.showGradeResultsButton.enabled = YES;
+		[self.showGradesOverviewButton setTitle:NSLocalizedString(@"main.showGradesOverview", nil) forState:UIControlStateNormal];
+		self.showGradesOverviewButton.enabled = YES;
 	} else {
-		[self.showGradeResultsButton setTitle:nil forState:UIControlStateNormal];
-		self.showGradeResultsButton.enabled = NO;
+		[self.showGradesOverviewButton setTitle:nil forState:UIControlStateNormal];
+		self.showGradesOverviewButton.enabled = NO;
 	}
 }
 
@@ -114,7 +114,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 #pragma mark - Actions
 
 - (IBAction)showGradeResults:(id)sender {
-	THGradeResultsViewController *gradeResultsViewController = [[THGradeResultsViewController alloc] init];
+	THGradesOverviewViewController *gradeResultsViewController = [[THGradesOverviewViewController alloc] init];
 	__weak typeof(self) weakSelf = self;
 	gradeResultsViewController.callback = ^(NSString *gradeResults) {
 		NSDate *fetchDate = [NSDate date];
@@ -132,16 +132,19 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	UIAlertAction *every15MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every15Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsEvery15Minutes;
 		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsEvery15Minutes];
+		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
 	}];
 	[actionSheet addAction:every15MinutesAction];
 	UIAlertAction *every30MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every30Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsEvery30Minutes;
 		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsEvery30Minutes];
+		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
 	}];
 	[actionSheet addAction:every30MinutesAction];
 	UIAlertAction *hourlyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.hourly", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsHourly;
 		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsHourly];
+		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
 	}];
 	[actionSheet addAction:hourlyAction];
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"common.cancel", nil) style:UIAlertActionStyleCancel handler:nil];
@@ -152,9 +155,10 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 - (IBAction)signOut:(id)sender {
 	[[THSettings sharedInstance] reset];
 	[self updateLastFetchLabelWithDate:nil];
-	[self updateShowGradeResultsButtonWithLoggedIn:NO];
+	[self updateShowGradesOverviewButtonWithLoggedIn:NO];
 	[self updateSignOutButtonWithLoggedIn:NO];
 	[self updateLoggedInLabelWithUsername:nil];
+	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 	[self performSegueWithIdentifier:kTHMainShowLoginSegueIdentifier sender:nil];
 }
 
@@ -171,11 +175,19 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 			[THSettings sharedInstance].password = password;
 			[THSettings sharedInstance].lastHashedResults = [gradeResults th_sha1];
 			[weakSelf updateLastFetchLabelWithDate:fetchDate];
-			[weakSelf updateShowGradeResultsButtonWithLoggedIn:YES];
+			[weakSelf updateShowGradesOverviewButtonWithLoggedIn:YES];
 			[weakSelf updateSignOutButtonWithLoggedIn:YES];
 			[weakSelf updateLoggedInLabelWithUsername:username];
+			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
+			if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
+				[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil]];
+			}
 		};
 	}
+}
+
+- (void)askForUserNotificationPermission {
+	
 }
 
 #pragma mark - Notifications

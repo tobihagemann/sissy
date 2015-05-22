@@ -12,7 +12,7 @@
 
 "main.lastFetch" = "Last Fetch:\n%@";
 "main.lastFetch.never" = "Never";
-"main.showGradeResults" = "Show Grade Results";
+"main.showGradesOverview" = "Show Overview of Grades";
 "main.fetchNewGradeResultsSetting" = "Fetch New Grade Results:\n%@";
 "main.fetchNewGradeResultsSetting.every15Minutes" = "Every 15 Minutes";
 "main.fetchNewGradeResultsSetting.every30Minutes" = "Every 30 Minutes";
@@ -25,7 +25,7 @@
 "login.password" = "Password";
 "login.action" = "Login";
 
-"gradeResults.title" = "Grade Results";
+"gradesOverview.title" = "Overview of Grades";
 
 "XLFormViewController_ValidationErrorTitle" = "Whoops!";
 "%@ can't be empty" = "%@ can't be empty.";

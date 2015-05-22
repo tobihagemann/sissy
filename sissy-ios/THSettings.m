@@ -17,6 +17,10 @@ NSString *const kTHSettingsUsernameKey = @"username";
 NSString *const kTHSettingsPasswordKey = @"password";
 NSString *const kTHSettingsLoggedInKey = @"loggedIn";
 
+NSTimeInterval const kSETOSettingsFetchNewGradeResultsEvery15Minutes = 900.0;
+NSTimeInterval const kSETOSettingsFetchNewGradeResultsEvery30Minutes = 1800.0;
+NSTimeInterval const kSETOSettingsFetchNewGradeResultsHourly = 3600.0;
+
 @implementation THSettings
 
 + (instancetype)sharedInstance {
@@ -66,6 +70,17 @@ NSString *const kTHSettingsLoggedInKey = @"loggedIn";
 
 - (void)setLastHashedResults:(NSString *)lastHashedResults {
 	[GVUserDefaults standardUserDefaults].lastHashedResults = lastHashedResults;
+}
+
+- (NSTimeInterval)fetchNewGradeResultsTimeInterval {
+	switch (self.fetchNewGradeResultsSetting) {
+		case THFetchNewGradeResultsEvery15Minutes:
+			return kSETOSettingsFetchNewGradeResultsEvery15Minutes;
+		case THFetchNewGradeResultsEvery30Minutes:
+			return kSETOSettingsFetchNewGradeResultsEvery30Minutes;
+		case THFetchNewGradeResultsHourly:
+			return kSETOSettingsFetchNewGradeResultsHourly;
+	}
 }
 
 - (BOOL)loggedIn {

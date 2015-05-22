@@ -1,12 +1,12 @@
 //
-//  THGradeResultsViewController.m
+//  THGradesOverviewViewController.m
 //  sissy
 //
 //  Created by Tobias Hagemann on 22/05/15.
 //  Copyright (c) 2015 tobiha.de. All rights reserved.
 //
 
-#import "THGradeResultsViewController.h"
+#import "THGradesOverviewViewController.h"
 
 #import <WebKit/WebKit.h>
 #import "THSissyService.h"
@@ -14,11 +14,11 @@
 #import "UIColor+THColors.h"
 #import "THNotificationView.h"
 
-@interface THGradeResultsViewController ()
+@interface THGradesOverviewViewController ()
 @property (nonatomic, strong) WKWebView *webView;
 @end
 
-@implementation THGradeResultsViewController
+@implementation THGradesOverviewViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -27,7 +27,7 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 	
 	self.navigationController.navigationBar.tintColor = [UIColor th_primaryColor];
-	self.navigationItem.title = NSLocalizedString(@"gradeResults.title", nil);
+	self.navigationItem.title = NSLocalizedString(@"gradesOverview.title", nil);
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissScreen:)];
 	
 	self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
@@ -42,6 +42,9 @@
 - (void)loadGradeResults {
 	NSString *username = [THSettings sharedInstance].username;
 	NSString *password = [THSettings sharedInstance].password;
+	if (!username || !password) {
+		return;
+	}
 	__weak typeof(self) weakSelf = self;
 	[THSissyService gradeResultsWithUsername:username password:password callback:^(NSString *gradeResults, NSError *error) {
 		if (error) {

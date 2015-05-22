@@ -1,5 +1,5 @@
 //
-//  THGradeResultsViewController.h
+//  THGradesOverviewViewController.h
 //  sissy
 //
 //  Created by Tobias Hagemann on 22/05/15.
@@ -10,7 +10,7 @@
 
 typedef void (^THGradeResultsCallback)(NSString *gradeResults);
 
-@interface THGradeResultsViewController : UIViewController
+@interface THGradesOverviewViewController : UIViewController
 
 @property (nonatomic, strong) THGradeResultsCallback callback;
 

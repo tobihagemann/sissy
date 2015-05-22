@@ -16,7 +16,7 @@
 		74C43FA21B0F83E000464C34 /* THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA11B0F83E000464C34 /* THSettings.m */; };
 		74C43FA31B0F8C8600464C34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74C43F961B0F68BC00464C34 /* Localizable.strings */; };
 		74C43FA71B0F932400464C34 /* THLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA61B0F932400464C34 /* THLoginViewController.m */; };
-		74C43FAA1B0F932E00464C34 /* THGradeResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA91B0F932E00464C34 /* THGradeResultsViewController.m */; };
+		74C43FAA1B0F932E00464C34 /* THGradesOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA91B0F932E00464C34 /* THGradesOverviewViewController.m */; };
 		74C43FAF1B0FA0AC00464C34 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C43FAE1B0FA0AC00464C34 /* WebKit.framework */; };
 		74C43FB31B0FA0D900464C34 /* UIColor+THColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */; };
 		74C43FB71B0FA3C800464C34 /* graderesults.html in Resources */ = {isa = PBXBuildFile; fileRef = 74C43FB91B0FA3C800464C34 /* graderesults.html */; };
@@ -63,8 +63,8 @@
 		74C43FA11B0F83E000464C34 /* THSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSettings.m; sourceTree = "<group>"; };
 		74C43FA51B0F932400464C34 /* THLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLoginViewController.h; sourceTree = "<group>"; };
 		74C43FA61B0F932400464C34 /* THLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLoginViewController.m; sourceTree = "<group>"; };
-		74C43FA81B0F932E00464C34 /* THGradeResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGradeResultsViewController.h; sourceTree = "<group>"; };
-		74C43FA91B0F932E00464C34 /* THGradeResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGradeResultsViewController.m; sourceTree = "<group>"; };
+		74C43FA81B0F932E00464C34 /* THGradesOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGradesOverviewViewController.h; sourceTree = "<group>"; };
+		74C43FA91B0F932E00464C34 /* THGradesOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGradesOverviewViewController.m; sourceTree = "<group>"; };
 		74C43FAE1B0FA0AC00464C34 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		74C43FB11B0FA0D900464C34 /* UIColor+THColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+THColors.h"; sourceTree = "<group>"; };
 		74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+THColors.m"; sourceTree = "<group>"; };
@@ -166,8 +166,8 @@
 				74C43F991B0F7C4E00464C34 /* THMainViewController.m */,
 				74C43FA51B0F932400464C34 /* THLoginViewController.h */,
 				74C43FA61B0F932400464C34 /* THLoginViewController.m */,
-				74C43FA81B0F932E00464C34 /* THGradeResultsViewController.h */,
-				74C43FA91B0F932E00464C34 /* THGradeResultsViewController.m */,
+				74C43FA81B0F932E00464C34 /* THGradesOverviewViewController.h */,
+				74C43FA91B0F932E00464C34 /* THGradesOverviewViewController.m */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 				74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */,
 				74C43FB31B0FA0D900464C34 /* UIColor+THColors.m in Sources */,
 				74E6DD981B0F1AB50068C672 /* THSissyService.m in Sources */,
-				74C43FAA1B0F932E00464C34 /* THGradeResultsViewController.m in Sources */,
+				74C43FAA1B0F932E00464C34 /* THGradesOverviewViewController.m in Sources */,
 				74C43F9A1B0F7C4E00464C34 /* THMainViewController.m in Sources */,
 				74E6DD9A1B0F1AB80068C672 /* NSString+THExtensions.m in Sources */,
 				74C43FA71B0F932400464C34 /* THLoginViewController.m in Sources */,

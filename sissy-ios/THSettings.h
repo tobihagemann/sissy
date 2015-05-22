@@ -21,6 +21,8 @@ typedef NS_ENUM(NSInteger, THFetchNewGradeResultsOption) {
 @property (nonatomic, weak) NSString *username;
 @property (nonatomic, weak) NSString *password;
 @property (nonatomic, weak) NSString *lastHashedResults;
+
+@property (nonatomic, readonly, getter=fetchNewGradeResultsTimeInterval) NSTimeInterval fetchNewGradeResultsTimeInterval;
 @property (nonatomic, readonly, getter=loggedIn) BOOL loggedIn;
 
 + (instancetype)sharedInstance;

@@ -31,7 +31,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaR-LA-KBO">
                                         <rect key="frame" x="0.0" y="50" width="540" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <state key="normal" title="Show Grade Results">
+                                        <state key="normal" title="Show Overview of Grades">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -78,7 +78,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAK-Wc-gE2">
                                 <rect key="frame" x="264" y="555" width="72" height="15"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -103,7 +103,7 @@
                         <outlet property="fetchNewGradeResultsSettingButton" destination="U0C-N3-VFz" id="ZIL-DE-TzD"/>
                         <outlet property="lastFetchLabel" destination="mpg-3X-jg0" id="N1T-NT-iYT"/>
                         <outlet property="loggedInLabel" destination="SAK-Wc-gE2" id="pMD-6y-HnX"/>
-                        <outlet property="showGradeResultsButton" destination="vaR-LA-KBO" id="Cd4-ZN-nNM"/>
+                        <outlet property="showGradesOverviewButton" destination="vaR-LA-KBO" id="Cd4-ZN-nNM"/>
                         <outlet property="signOutButton" destination="ouf-aa-1k5" id="nGq-dw-DUR"/>
                         <segue destination="7GH-Rq-hU4" kind="presentation" identifier="showLogin" modalPresentationStyle="formSheet" id="SqK-S7-IHT"/>
                     </connections>
@@ -127,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TrA-72-b1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="226"/>
+            <point key="canvasLocation" x="1675" y="330"/>
         </scene>
     </scenes>
     <resources>

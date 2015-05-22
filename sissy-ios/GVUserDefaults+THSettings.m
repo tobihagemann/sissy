@@ -15,4 +15,9 @@
 @dynamic username;
 @dynamic lastHashedResults;
 
+- (NSString *)transformKey:(NSString *)key {
+	key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[key substringToIndex:1].uppercaseString];
+	return [NSString stringWithFormat:@"THUserDefault%@", key];
+}
+
 @end
