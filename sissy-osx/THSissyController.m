@@ -14,7 +14,7 @@
 @interface THSissyController ()
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *lastResultHash;
+@property (nonatomic, strong) NSString *lastHashedResults;
 @property (nonatomic, strong) NSTimer *timer;
 @end
 
@@ -40,22 +40,23 @@
 
 - (void)checkGradeResults {
 	[THSissyService checkGradeResultsWithUsername:self.username password:self.password callback:^(NSString *gradeResults, NSError *error) {
-		if (!error) {
-			NSString *resultHash = [gradeResults th_sha1];
-			if (self.lastResultHash) {
-				if (![resultHash isEqualToString:self.lastResultHash]) {
-					NSLog(@"Es wurde eine Änderung im Notenspiegel festgestellt.");
-					[self notifyWithText:@"Notenspiegel wurde aktualisiert."];
-				} else {
-					NSLog(@"Notenspiegel hat sich nicht verändert.");
-				}
-			} else {
-				NSLog(@"Notenspiegel wurde erfolgreich geladen.");
-			}
-			self.lastResultHash = resultHash;
-		} else {
-			NSLog(@"Notenspiegel konnte nicht abgerufen werden.");
+		if (error) {
+			NSLog(NSLocalizedString(@"log.loadError", nil), error.localizedDescription);
+			return;
 		}
+		
+		NSString *hashedResults = [gradeResults th_sha1];
+		if (self.lastHashedResults) {
+			if (![hashedResults isEqualToString:self.lastHashedResults]) {
+				NSLog(NSLocalizedString(@"log.changeDetected", nil));
+				[self notifyWithText:NSLocalizedString(@"notification.changeDetected", nil)];
+			} else {
+				NSLog(NSLocalizedString(@"log.noChangeDetected", nil));
+			}
+		} else {
+			NSLog(NSLocalizedString(@"log.loadSuccessful", nil));
+		}
+		self.lastHashedResults = hashedResults;
 	}];
 }
 

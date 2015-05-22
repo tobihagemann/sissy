@@ -80,14 +80,14 @@ NSString *const kTHSissyBaseUrlString = @"https://dias.fh-bonn-rhein-sieg.de/";
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 	[manager GET:[kTHSissyBaseUrlString stringByAppendingString:relativePath] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		NSError *error;
-		NSString *gradeResultsTableContent = [THSissyService gradeResultsTableContentFromHtmlData:responseObject error:&error];
-		callback(gradeResultsTableContent, error);
+		NSString *gradeResults = [THSissyService gradeResultsFromHtmlData:responseObject error:&error];
+		callback(gradeResults, error);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		callback(nil, error);
 	}];
 }
 
-+ (NSString *)gradeResultsTableContentFromHtmlData:(NSData *)htmlData error:(NSError **)error {
++ (NSString *)gradeResultsFromHtmlData:(NSData *)htmlData error:(NSError **)error {
 	NSParameterAssert(htmlData);
 	TFHpple *document = [TFHpple hppleWithHTMLData:htmlData];
 	NSArray *tables = [document searchWithXPathQuery:@"//div[@id=\"inhalt\"]/table//table"];
