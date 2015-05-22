@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <GBCli/GBCli.h>
-#import "Sissy.h"
+#import "THSissyController.h"
 
-@implementation NSBundle (swizle)
+@implementation NSBundle (THSwizzle)
 
-- (NSString *)__bundleIdentifier {
+- (NSString *)th_bundleIdentifier {
 	if (self == [NSBundle mainBundle]) {
-		return @"com.apple.finder";
+		return @"com.apple.finder"; // fake bundle identifier
 	} else {
-		return [self __bundleIdentifier];
+		return self.bundleIdentifier;
 	}
 }
 
@@ -26,7 +26,7 @@
 BOOL installNSBundleHook() {
 	Class class = objc_getClass("NSBundle");
 	if (class) {
-		method_exchangeImplementations(class_getInstanceMethod(class, @selector(bundleIdentifier)), class_getInstanceMethod(class, @selector(__bundleIdentifier)));
+		method_exchangeImplementations(class_getInstanceMethod(class, @selector(bundleIdentifier)), class_getInstanceMethod(class, @selector(th_bundleIdentifier)));
 		return YES;
 	}
 	return NO;
@@ -46,8 +46,8 @@ int main(int argc, char **argv) {
 				return 1;
 			}
 
-			Sissy *sissy = [[Sissy alloc] initWithUsername:[settings objectForKey:@"username"] password:[settings objectForKey:@"password"]];
-			[sissy runPeriodiciallyWithInterval:900];
+			THSissyController *sissyController = [[THSissyController alloc] initWithUsername:[settings objectForKey:@"username"] password:[settings objectForKey:@"password"]];
+			[sissyController runPeriodiciallyWithInterval:900];
 			[[NSRunLoop currentRunLoop] run];
 		}
 	}
