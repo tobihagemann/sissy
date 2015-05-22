@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="THMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,123 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="SKx-Ky-HKi">
+                                <rect key="frame" x="199" y="50" width="202" height="40"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGZ-kB-CRn">
+                                <rect key="frame" x="30" y="259" width="540" height="82"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Fetch" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpg-3X-jg0">
+                                        <rect key="frame" x="0.0" y="0.0" width="540" height="20"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaR-LA-KBO">
+                                        <rect key="frame" x="0.0" y="50" width="540" height="32"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Show Grade Results">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showGradeResults:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZjY-eV-Ecz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mpg-3X-jg0" firstAttribute="top" secondItem="kGZ-kB-CRn" secondAttribute="top" id="1jK-QZ-qMW"/>
+                                    <constraint firstItem="mpg-3X-jg0" firstAttribute="leading" secondItem="kGZ-kB-CRn" secondAttribute="leading" id="2Dy-vm-CoE"/>
+                                    <constraint firstItem="vaR-LA-KBO" firstAttribute="top" secondItem="mpg-3X-jg0" secondAttribute="bottom" constant="30" id="2Tv-Us-J3p"/>
+                                    <constraint firstAttribute="trailing" secondItem="mpg-3X-jg0" secondAttribute="trailing" id="H6Q-kp-zPp"/>
+                                    <constraint firstAttribute="bottom" secondItem="vaR-LA-KBO" secondAttribute="bottom" id="mYT-2G-mws"/>
+                                    <constraint firstAttribute="trailing" secondItem="vaR-LA-KBO" secondAttribute="trailing" id="qDl-5b-grN"/>
+                                    <constraint firstItem="vaR-LA-KBO" firstAttribute="leading" secondItem="kGZ-kB-CRn" secondAttribute="leading" id="rxo-aC-gsP"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="U0C-N3-VFz">
+                                <rect key="frame" x="207" y="461" width="186" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Fetch New Grade Results">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="titleLabel.textAlignment">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="showFetchNewGradeResultsSetting:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jrk-gJ-d2a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouf-aa-1k5">
+                                <rect key="frame" x="268" y="523" width="64" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" red="0.91545593738555908" green="0.29308891296386719" blue="0.20751205086708069" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Vg-n2-rmZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAK-Wc-gE2">
+                                <rect key="frame" x="264" y="555" width="72" height="15"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.61458474397659302" blue="0.88901197910308838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="SKx-Ky-HKi" secondAttribute="centerX" id="3so-yz-O55"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SAK-Wc-gE2" secondAttribute="bottom" constant="30" id="600-eo-DFB"/>
+                            <constraint firstItem="SAK-Wc-gE2" firstAttribute="top" secondItem="ouf-aa-1k5" secondAttribute="bottom" id="FXH-g9-g03"/>
+                            <constraint firstItem="ouf-aa-1k5" firstAttribute="top" secondItem="U0C-N3-VFz" secondAttribute="bottom" constant="30" id="GfL-sJ-Rol"/>
+                            <constraint firstAttribute="centerX" secondItem="SAK-Wc-gE2" secondAttribute="centerX" id="LWq-Kn-BRo"/>
+                            <constraint firstAttribute="centerX" secondItem="U0C-N3-VFz" secondAttribute="centerX" id="Lui-O7-JWd"/>
+                            <constraint firstAttribute="trailing" secondItem="kGZ-kB-CRn" secondAttribute="trailing" constant="30" id="Npe-dv-BJb"/>
+                            <constraint firstAttribute="centerX" secondItem="ouf-aa-1k5" secondAttribute="centerX" id="QNg-u7-od9"/>
+                            <constraint firstItem="SKx-Ky-HKi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="jGd-yN-2qo"/>
+                            <constraint firstAttribute="centerX" secondItem="kGZ-kB-CRn" secondAttribute="centerX" id="nRD-v4-cSA"/>
+                            <constraint firstAttribute="centerY" secondItem="kGZ-kB-CRn" secondAttribute="centerY" id="tRr-Rp-dn0"/>
+                            <constraint firstItem="kGZ-kB-CRn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="xzh-Gr-y16"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="fetchNewGradeResultsSettingButton" destination="U0C-N3-VFz" id="ZIL-DE-TzD"/>
+                        <outlet property="lastFetchLabel" destination="mpg-3X-jg0" id="N1T-NT-iYT"/>
+                        <outlet property="loggedInLabel" destination="SAK-Wc-gE2" id="pMD-6y-HnX"/>
+                        <outlet property="showGradeResultsButton" destination="vaR-LA-KBO" id="Cd4-ZN-nNM"/>
+                        <outlet property="signOutButton" destination="ouf-aa-1k5" id="nGq-dw-DUR"/>
+                        <segue destination="7GH-Rq-hU4" kind="presentation" identifier="showLogin" modalPresentationStyle="formSheet" id="SqK-S7-IHT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="dAr-zn-PY1">
+            <objects>
+                <viewController id="7GH-Rq-hU4" customClass="THLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hlp-0a-gea"/>
+                        <viewControllerLayoutGuide type="bottom" id="ISx-uO-qT3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yla-Jh-ywo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TrA-72-b1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="226"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="202" height="40"/>
+    </resources>
+    <color key="tintColor" red="0.0" green="0.61458474397659302" blue="0.88901197910308838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

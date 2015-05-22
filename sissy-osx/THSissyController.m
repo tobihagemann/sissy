@@ -39,22 +39,22 @@
 }
 
 - (void)checkGradeResults {
-	[THSissyService checkGradeResultsWithUsername:self.username password:self.password callback:^(NSString *gradeResults, NSError *error) {
+	[THSissyService gradeResultsWithUsername:self.username password:self.password callback:^(NSString *gradeResults, NSError *error) {
 		if (error) {
-			NSLog(NSLocalizedString(@"log.loadError", nil), error.localizedDescription);
+			NSLog(@"Dein Notenspiegel konnte nicht abgerufen werden: %@", error.localizedDescription);
 			return;
 		}
 		
 		NSString *hashedResults = [gradeResults th_sha1];
 		if (self.lastHashedResults) {
 			if (![hashedResults isEqualToString:self.lastHashedResults]) {
-				NSLog(NSLocalizedString(@"log.changeDetected", nil));
-				[self notifyWithText:NSLocalizedString(@"notification.changeDetected", nil)];
+				NSLog(@"Es wurde eine Änderung in deinem Notenspiegel festgestellt.");
+				[self notifyWithText:@"Dein Notenspiegel wurde aktualisiert."];
 			} else {
-				NSLog(NSLocalizedString(@"log.noChangeDetected", nil));
+				NSLog(@"Dein Notenspiegel hat sich nicht verändert.");
 			}
 		} else {
-			NSLog(NSLocalizedString(@"log.loadSuccessful", nil));
+			NSLog(@"Dein Notenspiegel wurde erfolgreich geladen.");
 		}
 		self.lastHashedResults = hashedResults;
 	}];

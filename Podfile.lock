@@ -20,26 +20,46 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CSNotificationView (0.5.4)
+  - FXKeychain (1.5.2)
   - GBCli (1.1)
+  - GVUserDefaults (1.0.1)
   - hpple (0.3.0)
+  - SORelativeDateTransformer (1.1.10)
+  - XLForm (HEAD based on 2.2.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
+  - CSNotificationView (from `https://github.com/MuscleRumble/CSNotificationView`)
+  - FXKeychain (~> 1.5.2)
   - GBCli (~> 1.1)
+  - GVUserDefaults (~> 1.0.1)
   - hpple (from `https://github.com/MuscleRumble/hpple`)
+  - SORelativeDateTransformer (~> 1.1.10)
+  - XLForm (HEAD)
 
 EXTERNAL SOURCES:
+  CSNotificationView:
+    :git: https://github.com/MuscleRumble/CSNotificationView
   hpple:
     :git: https://github.com/MuscleRumble/hpple
 
 CHECKOUT OPTIONS:
+  CSNotificationView:
+    :commit: 14aa3e55d172ea4a2acc54406a1a265e04bebfba
+    :git: https://github.com/MuscleRumble/CSNotificationView
   hpple:
     :commit: 7e4c2e80c827a701d624a327d24f7dcc92548ff0
     :git: https://github.com/MuscleRumble/hpple
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
+  FXKeychain: 1a711bddc04a2bd69850dcfe297b8a43027a9980
   GBCli: e5f988fadb68e1e3c01919f134009fed9796fde0
+  GVUserDefaults: acb40729f70984008d0650e49d7e422f1bbfa597
   hpple: 37ac0a804d0f8a7f488712b5ff5f06129e1c9e31
+  SORelativeDateTransformer: 307489386df4697780902bc16e99881d69a629b3
+  XLForm: 799e61ef230f519914e722bf032b19a597223c19
 
 COCOAPODS: 0.37.1

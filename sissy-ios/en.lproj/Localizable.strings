@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  sissy
+
+  Created by Tobias Hagemann on 22/05/15.
+  Copyright (c) 2015 tobiha.de. All rights reserved.
+*/
+
+"common.cancel" = "Cancel";
+
+"notification.gradeResultsUpdated" = "Your grade results were updated.";
+
+"main.lastFetch" = "Last Fetch:\n%@";
+"main.lastFetch.never" = "Never";
+"main.showGradeResults" = "Show Grade Results";
+"main.fetchNewGradeResultsSetting" = "Fetch New Grade Results:\n%@";
+"main.fetchNewGradeResultsSetting.every15Minutes" = "Every 15 Minutes";
+"main.fetchNewGradeResultsSetting.every30Minutes" = "Every 30 Minutes";
+"main.fetchNewGradeResultsSetting.hourly" = "Hourly";
+"main.signOut" = "Sign Out";
+"main.loggedIn" = "Logged in as %@";
+
+"login.title" = "Login";
+"login.username" = "Username";
+"login.password" = "Password";
+"login.action" = "Login";
+
+"gradeResults.title" = "Grade Results";
+
+"XLFormViewController_ValidationErrorTitle" = "Whoops!";
+"%@ can't be empty" = "%@ can't be empty.";

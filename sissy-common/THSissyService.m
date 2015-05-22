@@ -18,7 +18,7 @@ NSString *const kTHSissyBaseUrlString = @"https://dias.fh-bonn-rhein-sieg.de/";
 
 @implementation THSissyService
 
-+ (void)checkGradeResultsWithUsername:(NSString *)username password:(NSString *)password callback:(THSissyCallback)callback {
++ (void)gradeResultsWithUsername:(NSString *)username password:(NSString *)password callback:(THSissyCallback)callback {
 	NSParameterAssert(username);
 	NSParameterAssert(password);
 	NSParameterAssert(callback);

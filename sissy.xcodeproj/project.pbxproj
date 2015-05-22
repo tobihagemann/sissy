@@ -11,6 +11,16 @@
 		42E8D8FE8BE9BE80F583216F /* libPods-sissy-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024A8540E5AF80577689B080 /* libPods-sissy-ios.a */; };
 		74578FCB1AAF4D66005DC4CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74578FCA1AAF4D66005DC4CD /* main.m */; };
 		74AC27781B0F2A5100EECF30 /* THSissyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AC27771B0F2A5100EECF30 /* THSissyController.m */; };
+		74C43F9A1B0F7C4E00464C34 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F991B0F7C4E00464C34 /* THMainViewController.m */; };
+		74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F9E1B0F832000464C34 /* GVUserDefaults+THSettings.m */; };
+		74C43FA21B0F83E000464C34 /* THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA11B0F83E000464C34 /* THSettings.m */; };
+		74C43FA31B0F8C8600464C34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74C43F961B0F68BC00464C34 /* Localizable.strings */; };
+		74C43FA71B0F932400464C34 /* THLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA61B0F932400464C34 /* THLoginViewController.m */; };
+		74C43FAA1B0F932E00464C34 /* THGradeResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA91B0F932E00464C34 /* THGradeResultsViewController.m */; };
+		74C43FAF1B0FA0AC00464C34 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C43FAE1B0FA0AC00464C34 /* WebKit.framework */; };
+		74C43FB31B0FA0D900464C34 /* UIColor+THColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */; };
+		74C43FB71B0FA3C800464C34 /* graderesults.html in Resources */ = {isa = PBXBuildFile; fileRef = 74C43FB91B0FA3C800464C34 /* graderesults.html */; };
+		74C43FBD1B0FA46A00464C34 /* THNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FBC1B0FA46A00464C34 /* THNotificationView.m */; };
 		74E6DD4D1B0F12100068C672 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6DD4C1B0F12100068C672 /* main.m */; };
 		74E6DD501B0F12100068C672 /* THAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6DD4F1B0F12100068C672 /* THAppDelegate.m */; };
 		74E6DD561B0F12100068C672 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74E6DD541B0F12100068C672 /* Main.storyboard */; };
@@ -32,16 +42,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		74E6DD8F1B0F126D0068C672 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +55,23 @@
 		74AC27771B0F2A5100EECF30 /* THSissyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSissyController.m; sourceTree = "<group>"; };
 		74C43F951B0F68BC00464C34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		74C43F971B0F68C900464C34 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74C43F981B0F7C4E00464C34 /* THMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THMainViewController.h; sourceTree = "<group>"; };
+		74C43F991B0F7C4E00464C34 /* THMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THMainViewController.m; sourceTree = "<group>"; };
+		74C43F9D1B0F832000464C34 /* GVUserDefaults+THSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+THSettings.h"; sourceTree = "<group>"; };
+		74C43F9E1B0F832000464C34 /* GVUserDefaults+THSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+THSettings.m"; sourceTree = "<group>"; };
+		74C43FA01B0F83E000464C34 /* THSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSettings.h; sourceTree = "<group>"; };
+		74C43FA11B0F83E000464C34 /* THSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSettings.m; sourceTree = "<group>"; };
+		74C43FA51B0F932400464C34 /* THLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLoginViewController.h; sourceTree = "<group>"; };
+		74C43FA61B0F932400464C34 /* THLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLoginViewController.m; sourceTree = "<group>"; };
+		74C43FA81B0F932E00464C34 /* THGradeResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THGradeResultsViewController.h; sourceTree = "<group>"; };
+		74C43FA91B0F932E00464C34 /* THGradeResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THGradeResultsViewController.m; sourceTree = "<group>"; };
+		74C43FAE1B0FA0AC00464C34 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		74C43FB11B0FA0D900464C34 /* UIColor+THColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+THColors.h"; sourceTree = "<group>"; };
+		74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+THColors.m"; sourceTree = "<group>"; };
+		74C43FB81B0FA3C800464C34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/graderesults.html; sourceTree = "<group>"; };
+		74C43FBA1B0FA3C900464C34 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/graderesults.html; sourceTree = "<group>"; };
+		74C43FBB1B0FA46A00464C34 /* THNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNotificationView.h; sourceTree = "<group>"; };
+		74C43FBC1B0FA46A00464C34 /* THNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNotificationView.m; sourceTree = "<group>"; };
 		74E6DD481B0F12100068C672 /* sissy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sissy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E6DD4B1B0F12100068C672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74E6DD4C1B0F12100068C672 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -84,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C43FAF1B0FA0AC00464C34 /* WebKit.framework in Frameworks */,
 				42E8D8FE8BE9BE80F583216F /* libPods-sissy-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,14 +159,61 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		74C43F9B1B0F82FF00464C34 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				74C43F981B0F7C4E00464C34 /* THMainViewController.h */,
+				74C43F991B0F7C4E00464C34 /* THMainViewController.m */,
+				74C43FA51B0F932400464C34 /* THLoginViewController.h */,
+				74C43FA61B0F932400464C34 /* THLoginViewController.m */,
+				74C43FA81B0F932E00464C34 /* THGradeResultsViewController.h */,
+				74C43FA91B0F932E00464C34 /* THGradeResultsViewController.m */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		74C43F9C1B0F830700464C34 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				74C43F9D1B0F832000464C34 /* GVUserDefaults+THSettings.h */,
+				74C43F9E1B0F832000464C34 /* GVUserDefaults+THSettings.m */,
+				74C43FA01B0F83E000464C34 /* THSettings.h */,
+				74C43FA11B0F83E000464C34 /* THSettings.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		74C43FB01B0FA0C800464C34 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				74C43FB11B0FA0D900464C34 /* UIColor+THColors.h */,
+				74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */,
+				74C43FBB1B0FA46A00464C34 /* THNotificationView.h */,
+				74C43FBC1B0FA46A00464C34 /* THNotificationView.m */,
+			);
+			name = Design;
+			sourceTree = "<group>";
+		};
+		74C43FB41B0FA1A500464C34 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				74C43FB91B0FA3C800464C34 /* graderesults.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		74E6DD491B0F12100068C672 /* sissy-ios */ = {
 			isa = PBXGroup;
 			children = (
+				74C43F9C1B0F830700464C34 /* Settings */,
+				74C43F9B1B0F82FF00464C34 /* Screens */,
+				74C43FB01B0FA0C800464C34 /* Design */,
 				74E6DD4E1B0F12100068C672 /* THAppDelegate.h */,
 				74E6DD4F1B0F12100068C672 /* THAppDelegate.m */,
 				74E6DD541B0F12100068C672 /* Main.storyboard */,
 				74E6DD571B0F12100068C672 /* Images.xcassets */,
 				74E6DD591B0F12100068C672 /* LaunchScreen.xib */,
+				74C43FB41B0FA1A500464C34 /* Resources */,
 				74E6DD4A1B0F12100068C672 /* Supporting Files */,
 			);
 			path = "sissy-ios";
@@ -158,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				74E6DD4B1B0F12100068C672 /* Info.plist */,
+				74C43F961B0F68BC00464C34 /* Localizable.strings */,
 				74E6DD4C1B0F12100068C672 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -170,7 +236,6 @@
 				74FC2CE01AAF6210007B0F5E /* NSString+THExtensions.m */,
 				74FC2CD91AAF6190007B0F5E /* THSissyService.h */,
 				74FC2CDA1AAF6190007B0F5E /* THSissyService.m */,
-				74C43F961B0F68BC00464C34 /* Localizable.strings */,
 			);
 			path = "sissy-common";
 			sourceTree = "<group>";
@@ -178,6 +243,7 @@
 		8DF2F2215E361ACB1FC26193 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74C43FAE1B0FA0AC00464C34 /* WebKit.framework */,
 				024A8540E5AF80577689B080 /* libPods-sissy-ios.a */,
 				55F6B562D5A75A4EDF257759 /* libPods-sissy-osx.a */,
 			);
@@ -214,8 +280,8 @@
 				74E6DD441B0F12100068C672 /* Sources */,
 				74E6DD451B0F12100068C672 /* Frameworks */,
 				74E6DD461B0F12100068C672 /* Resources */,
-				74E6DD8F1B0F126D0068C672 /* Embed Frameworks */,
 				3F40EA04DC9A2BE402AA1DF5 /* Copy Pods Resources */,
+				74C43FA41B0F923900464C34 /* Set Build Number */,
 			);
 			buildRules = (
 			);
@@ -241,6 +307,12 @@
 					};
 					74E6DD471B0F12100068C672 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = YZQJQUHA3L;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -269,7 +341,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C43FB71B0FA3C800464C34 /* graderesults.html in Resources */,
 				74E6DD561B0F12100068C672 /* Main.storyboard in Resources */,
+				74C43FA31B0F8C8600464C34 /* Localizable.strings in Resources */,
 				74E6DD5B1B0F12100068C672 /* LaunchScreen.xib in Resources */,
 				74E6DD581B0F12100068C672 /* Images.xcassets in Resources */,
 			);
@@ -307,6 +381,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sissy-osx/Pods-sissy-osx-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		74C43FA41B0F923900464C34 /* Set Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
 		9C910792ADE9EB5744BF44A7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -357,9 +445,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				74E6DD501B0F12100068C672 /* THAppDelegate.m in Sources */,
+				74C43FBD1B0FA46A00464C34 /* THNotificationView.m in Sources */,
 				74E6DD4D1B0F12100068C672 /* main.m in Sources */,
+				74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */,
+				74C43FB31B0FA0D900464C34 /* UIColor+THColors.m in Sources */,
 				74E6DD981B0F1AB50068C672 /* THSissyService.m in Sources */,
+				74C43FAA1B0F932E00464C34 /* THGradeResultsViewController.m in Sources */,
+				74C43F9A1B0F7C4E00464C34 /* THMainViewController.m in Sources */,
 				74E6DD9A1B0F1AB80068C672 /* NSString+THExtensions.m in Sources */,
+				74C43FA71B0F932400464C34 /* THLoginViewController.m in Sources */,
+				74C43FA21B0F83E000464C34 /* THSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +468,15 @@
 				74C43F971B0F68C900464C34 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		74C43FB91B0FA3C800464C34 /* graderesults.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74C43FB81B0FA3C800464C34 /* en */,
+				74C43FBA1B0FA3C900464C34 /* de */,
+			);
+			name = graderesults.html;
 			sourceTree = "<group>";
 		};
 		74E6DD541B0F12100068C672 /* Main.storyboard */ = {
@@ -491,6 +595,7 @@
 			baseConfigurationReference = D3E63EC29FA3E707893CAFF7 /* Pods-sissy-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -512,6 +617,7 @@
 			baseConfigurationReference = D46C5A88CED1715E68189B21 /* Pods-sissy-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "sissy-ios/Info.plist";

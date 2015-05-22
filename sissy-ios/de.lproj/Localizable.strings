@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  sissy
+
+  Created by Tobias Hagemann on 22/05/15.
+  Copyright (c) 2015 tobiha.de. All rights reserved.
+*/
+
+"common.cancel" = "Abbrechen";
+
+"notification.changeDetected" = "Dein Notenspiegel wurde aktualisiert.";
+
+"main.lastFetch" = "Letzter Abruf:\n%@";
+"main.lastFetch.never" = "Nie";
+"main.showGradeResults" = "Notenspiegel anzeigen";
+"main.fetchNewGradeResultsSetting" = "Neuen Notenspiegel abrufen: %@";
+"main.fetchNewGradeResultsSetting.every15Minutes" = "Alle 15 Minuten";
+"main.fetchNewGradeResultsSetting.every30Minutes" = "Alle 30 Minuten";
+"main.fetchNewGradeResultsSetting.hourly" = "Stündlich";
+"main.signOut" = "Ausloggen";
+"main.loggedIn" = "Eingeloggt als %@";
+
+"login.title" = "Anmeldung";
+"login.username" = "Benutzername";
+"login.password" = "Kennwort";
+"login.action" = "Anmelden";
+
+"gradeResults.title" = "Notenspiegel";
+
+"XLFormViewController_ValidationErrorTitle" = "Hoppla!";
+"%@ can't be empty" = "%@ muss ausgefüllt werden.";

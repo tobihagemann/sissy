@@ -19,6 +19,6 @@ typedef void (^THSissyCallback)(NSString *result, NSError *error);
 
 @interface THSissyService : NSObject
 
-+ (void)checkGradeResultsWithUsername:(NSString *)username password:(NSString *)password callback:(THSissyCallback)callback;
++ (void)gradeResultsWithUsername:(NSString *)username password:(NSString *)password callback:(THSissyCallback)callback;
 
 @end
