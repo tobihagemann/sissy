@@ -21,13 +21,25 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - GBCli (1.1)
+  - hpple (0.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - GBCli (~> 1.1)
+  - hpple (from `https://github.com/MuscleRumble/hpple`)
+
+EXTERNAL SOURCES:
+  hpple:
+    :git: https://github.com/MuscleRumble/hpple
+
+CHECKOUT OPTIONS:
+  hpple:
+    :commit: 7e4c2e80c827a701d624a327d24f7dcc92548ff0
+    :git: https://github.com/MuscleRumble/hpple
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   GBCli: e5f988fadb68e1e3c01919f134009fed9796fde0
+  hpple: 37ac0a804d0f8a7f488712b5ff5f06129e1c9e31
 
 COCOAPODS: 0.37.1

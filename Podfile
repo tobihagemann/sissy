@@ -1,5 +1,6 @@
 def import_common_pods
 	pod 'AFNetworking', '~> 2.5.4'
+	pod 'hpple', :git => 'https://github.com/MuscleRumble/hpple'
 end
 
 target "sissy-osx" do

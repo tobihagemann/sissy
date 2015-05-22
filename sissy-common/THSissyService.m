@@ -9,9 +9,12 @@
 #import "THSissyService.h"
 
 #import <AFNetworking/AFNetworking.h>
+#import <hpple/TFHpple.h>
 #import "NSString+THExtensions.h"
 
 NSString *const kTHSissyErrorDomain = @"SissyErrorDomain";
+
+NSString *const kTHSissyBaseUrlString = @"https://dias.fh-bonn-rhein-sieg.de/";
 
 @implementation THSissyService
 
@@ -43,24 +46,26 @@ NSString *const kTHSissyErrorDomain = @"SissyErrorDomain";
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 	
 	// Parameters has to be "something" so that the queryStringSerialization above will be triggered.
-	[manager POST:@"https://dias.fh-bonn-rhein-sieg.de/d3/SISEgo.asp?formact=Login" parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		NSString *responseBody = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+	[manager POST:[kTHSissyBaseUrlString stringByAppendingString:@"d3/SISEgo.asp?formact=Login"] parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		NSError *error;
-		NSString *gradeResultsRelativePath = [THSissyService gradeResultsRelativePathFromResponseBody:responseBody error:&error];
+		NSString *gradeResultsRelativePath = [THSissyService gradeResultsRelativePathFromHtmlData:responseObject error:&error];
 		callback(gradeResultsRelativePath, error);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		callback(nil, error);
 	}];
 }
 
-+ (NSString *)gradeResultsRelativePathFromResponseBody:(NSString *)responseBody error:(NSError **)error {
-	NSParameterAssert(responseBody);
-	NSRange range1 = [responseBody rangeOfString:@"d3/SISEgo.asp?UserAcc=Gast&DokID=DiasSWeb&Exc=28&"];
-	NSRange range2 = [responseBody rangeOfString:@"\" Target=\"_blank\">Notenspiegel</a>"];
-	if (range1.location != NSNotFound && range2.location != NSNotFound) {
-		return [responseBody substringWithRange:NSMakeRange(range1.location, range2.location - range1.location)];
-	}
-	if (error) {
++ (NSString *)gradeResultsRelativePathFromHtmlData:(NSData *)htmlData error:(NSError **)error {
+	NSParameterAssert(htmlData);
+	TFHpple *document = [TFHpple hppleWithHTMLData:htmlData];
+	NSArray *links = [document searchWithXPathQuery:@"//a/@href"];
+	NSUInteger indexOfGradeResultsLink = [links indexOfObjectPassingTest:^BOOL(TFHppleElement *element, NSUInteger idx, BOOL *stop) {
+		return [element.content containsString:@"Exc=28"];
+	}];
+	if (indexOfGradeResultsLink != NSNotFound) {
+		TFHppleElement *element = links[indexOfGradeResultsLink];
+		return element.content;
+	} else if (error) {
 		*error = [NSError errorWithDomain:kTHSissyErrorDomain code:THSissyErrorUnableToRetrieveGradeResultsRelativePath userInfo:nil];
 	}
 	return nil;
@@ -73,28 +78,23 @@ NSString *const kTHSissyErrorDomain = @"SissyErrorDomain";
 	NSParameterAssert(callback);
 	AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-	[manager GET:[@"https://dias.fh-bonn-rhein-sieg.de/" stringByAppendingString:relativePath] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		NSString *responseBody = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+	[manager GET:[kTHSissyBaseUrlString stringByAppendingString:relativePath] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		NSError *error;
-		NSString *gradeResultsTableContent = [THSissyService gradeResultsTableContentFromResponseBody:responseBody error:&error];
+		NSString *gradeResultsTableContent = [THSissyService gradeResultsTableContentFromHtmlData:responseObject error:&error];
 		callback(gradeResultsTableContent, error);
 	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 		callback(nil, error);
 	}];
 }
 
-+ (NSString *)gradeResultsTableContentFromResponseBody:(NSString *)responseBody error:(NSError **)error {
-	NSParameterAssert(responseBody);
-	NSString *result = responseBody;
-	NSRange range = [responseBody rangeOfString:@"<tr bgcolor=\"#d5e5ef\"><td colspan=\"4\"><b>Studiengang:"];
-	if (range.location != NSNotFound) {
-		result = [result substringFromIndex:range.location];
-		range = [result rangeOfString:@"<table>"];
-		if (range.location != NSNotFound) {
-			return [result substringToIndex:range.location];
-		}
-	}
-	if (error) {
++ (NSString *)gradeResultsTableContentFromHtmlData:(NSData *)htmlData error:(NSError **)error {
+	NSParameterAssert(htmlData);
+	TFHpple *document = [TFHpple hppleWithHTMLData:htmlData];
+	NSArray *tables = [document searchWithXPathQuery:@"//div[@id=\"inhalt\"]/table//table"];
+	if (tables.count >= 2) {
+		TFHppleElement *element = tables[1];
+		return element.raw;
+	} else if (error) {
 		*error = [NSError errorWithDomain:kTHSissyErrorDomain code:THSissyErrorUnableToRetrieveGradeResultsTableContent userInfo:nil];
 	}
 	return nil;
