@@ -22,20 +22,20 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+
 	self.view.tintColor = [UIColor th_primaryColor];
 	self.view.backgroundColor = [UIColor whiteColor];
-	
+
 	self.navigationController.navigationBar.tintColor = [UIColor th_primaryColor];
 	self.navigationItem.title = NSLocalizedString(@"gradesOverview.title", nil);
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissScreen:)];
-	
+
 	self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
 	self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.webView.backgroundColor = [UIColor clearColor];
 	self.webView.opaque = NO;
 	[self.view addSubview:self.webView];
-	
+
 	[self loadGradeResults];
 }
 

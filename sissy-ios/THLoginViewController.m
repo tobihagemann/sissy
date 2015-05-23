@@ -36,27 +36,27 @@ NSString *const kTHLoginActionTag = @"login";
 
 - (void)initializeForm {
 	__weak typeof(self) weakSelf = self;
-	
+
 	XLFormDescriptor *form = [XLFormDescriptor formDescriptorWithTitle:NSLocalizedString(@"login.title", nil)];
 	form.assignFirstResponderOnShow = YES;
-	
+
 	XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
 	[form addFormSection:section];
-	
+
 	self.usernameRow = [XLFormRowDescriptor formRowDescriptorWithTag:kTHLoginUsernameTag rowType:XLFormRowDescriptorTypeAccount title:NSLocalizedString(@"login.username", nil)];
 	self.usernameRow.cellConfigAtConfigure[@"textField.placeholder"] = self.usernameRow.title;
 	self.usernameRow.cellConfigAtConfigure[@"imageView.image"] = [UIImage imageNamed:@"973-user"];
 	self.usernameRow.cellConfig[@"textLabel.text"] = @"";
 	self.usernameRow.required = YES;
 	[section addFormRow:self.usernameRow];
-	
+
 	self.passwordRow = [XLFormRowDescriptor formRowDescriptorWithTag:kTHLoginPasswordTag rowType:XLFormRowDescriptorTypePassword title:NSLocalizedString(@"login.password", nil)];
 	self.passwordRow.cellConfigAtConfigure[@"textField.placeholder"] = self.passwordRow.title;
 	self.passwordRow.cellConfigAtConfigure[@"imageView.image"] = [UIImage imageNamed:@"899-key"];
 	self.passwordRow.cellConfig[@"textLabel.text"] = @"";
 	self.passwordRow.required = YES;
 	[section addFormRow:self.passwordRow];
-	
+
 	XLFormRowDescriptor *loginActionRow = [XLFormRowDescriptor formRowDescriptorWithTag:kTHLoginActionTag rowType:XLFormRowDescriptorTypeButton title:NSLocalizedString(@"login.action", nil)];
 	loginActionRow.cellConfig[@"textLabel.textColor"] = [UIColor th_primaryColor];
 	loginActionRow.action.formBlock = ^(XLFormRowDescriptor *row) {
@@ -64,7 +64,7 @@ NSString *const kTHLoginActionTag = @"login";
 		[weakSelf deselectFormRow:row];
 	};
 	[section addFormRow:loginActionRow];
-	
+
 	self.form = form;
 }
 
@@ -99,7 +99,7 @@ NSString *const kTHLoginActionTag = @"login";
 		[self firstInvalidRowBecomeFirstResponder];
 		return;
 	}
-	
+
 	[SVProgressHUD showWithStatus:nil maskType:SVProgressHUDMaskTypeBlack];
 	NSString *username = self.username;
 	NSString *password = self.password;
@@ -125,7 +125,7 @@ NSString *const kTHLoginActionTag = @"login";
 			XLFormValidationStatus *status = [row doValidation];
 			if (status && !status.isValid) {
 				UITableViewCell<XLFormDescriptorCell> *cell = [row cellForFormController:self];
-				if ([cell formDescriptorCellCanBecomeFirstResponder]){
+				if ([cell formDescriptorCellCanBecomeFirstResponder]) {
 					[cell formDescriptorCellBecomeFirstResponder];
 					break;
 				}
@@ -138,7 +138,7 @@ NSString *const kTHLoginActionTag = @"login";
 	self.passwordRow.value = nil;
 	[self updateFormRow:self.passwordRow];
 	UITableViewCell<XLFormDescriptorCell> *cell = [self.passwordRow cellForFormController:self];
-	if ([cell formDescriptorCellCanBecomeFirstResponder]){
+	if ([cell formDescriptorCellCanBecomeFirstResponder]) {
 		[cell formDescriptorCellBecomeFirstResponder];
 	}
 }

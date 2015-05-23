@@ -37,7 +37,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+
 	[UIView performWithoutAnimation:^{
 		[self updateLastFetchLabelWithDate:[THSettings sharedInstance].lastFetchDate];
 		[self updateFetchNowButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
@@ -51,13 +51,13 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 		[self.fetchModeButton layoutIfNeeded];
 		[self.signOutButton layoutIfNeeded];
 	}];
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	
+
 	if (![THSettings sharedInstance].loggedIn) {
 		[self performSegueWithIdentifier:kTHMainShowLoginSegueIdentifier sender:self];
 	}

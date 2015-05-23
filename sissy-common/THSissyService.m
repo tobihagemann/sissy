@@ -44,7 +44,7 @@ NSString *const kTHSissyBaseUrlString = @"https://dias.fh-bonn-rhein-sieg.de/";
 		return [NSString stringWithFormat:@"DokID=DiasSWeb&SID=&ADias2Dction=ExecLogin&UserAcc=Gast&NextAction=Basis&txtBName=%@&txtKennwort=%@", username, password];
 	}];
 	manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-	
+
 	// Parameters has to be "something" so that the queryStringSerialization above will be triggered.
 	[manager POST:[kTHSissyBaseUrlString stringByAppendingString:@"d3/SISEgo.asp?formact=Login"] parameters:@{} success:^(AFHTTPRequestOperation *operation, id responseObject) {
 		NSError *error;
