@@ -11,7 +11,7 @@
 @interface GVUserDefaults (THSettings)
 
 @property (nonatomic, weak) NSDate *lastFetchDate;
-@property (nonatomic, assign) NSInteger fetchNewGradeResultsSetting;
+@property (nonatomic, assign) NSInteger fetchMode;
 @property (nonatomic, weak) NSString *username;
 @property (nonatomic, weak) NSString *lastHashedResults;
 

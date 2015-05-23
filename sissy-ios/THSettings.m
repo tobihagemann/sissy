@@ -12,14 +12,10 @@
 #import "GVUserDefaults+THSettings.h"
 
 NSString *const kTHSettingsLastFetchDateKey = @"lastFetchDate";
-NSString *const kTHSettingsFetchNewGradeResultsSettingKey = @"fetchNewGradeResultsSetting";
+NSString *const kTHSettingsFetchModeKey = @"fetchMode";
 NSString *const kTHSettingsUsernameKey = @"username";
 NSString *const kTHSettingsPasswordKey = @"password";
 NSString *const kTHSettingsLoggedInKey = @"loggedIn";
-
-NSTimeInterval const kSETOSettingsFetchNewGradeResultsEvery15Minutes = 900.0;
-NSTimeInterval const kSETOSettingsFetchNewGradeResultsEvery30Minutes = 1800.0;
-NSTimeInterval const kSETOSettingsFetchNewGradeResultsHourly = 3600.0;
 
 @implementation THSettings
 
@@ -40,12 +36,12 @@ NSTimeInterval const kSETOSettingsFetchNewGradeResultsHourly = 3600.0;
 	[GVUserDefaults standardUserDefaults].lastFetchDate = lastFetchDate;
 }
 
-- (THFetchNewGradeResultsOption)fetchNewGradeResultsSetting {
-	return [GVUserDefaults standardUserDefaults].fetchNewGradeResultsSetting;
+- (THFetchMode)fetchMode {
+	return [GVUserDefaults standardUserDefaults].fetchMode;
 }
 
-- (void)setFetchNewGradeResultsSetting:(THFetchNewGradeResultsOption)fetchNewGradeResultsSetting {
-	[GVUserDefaults standardUserDefaults].fetchNewGradeResultsSetting = fetchNewGradeResultsSetting;
+- (void)setFetchMode:(THFetchMode)fetchMode {
+	[GVUserDefaults standardUserDefaults].fetchMode = fetchMode;
 }
 
 - (NSString *)username {
@@ -70,17 +66,6 @@ NSTimeInterval const kSETOSettingsFetchNewGradeResultsHourly = 3600.0;
 
 - (void)setLastHashedResults:(NSString *)lastHashedResults {
 	[GVUserDefaults standardUserDefaults].lastHashedResults = lastHashedResults;
-}
-
-- (NSTimeInterval)fetchNewGradeResultsTimeInterval {
-	switch (self.fetchNewGradeResultsSetting) {
-		case THFetchNewGradeResultsEvery15Minutes:
-			return kSETOSettingsFetchNewGradeResultsEvery15Minutes;
-		case THFetchNewGradeResultsEvery30Minutes:
-			return kSETOSettingsFetchNewGradeResultsEvery30Minutes;
-		case THFetchNewGradeResultsHourly:
-			return kSETOSettingsFetchNewGradeResultsHourly;
-	}
 }
 
 - (BOOL)loggedIn {

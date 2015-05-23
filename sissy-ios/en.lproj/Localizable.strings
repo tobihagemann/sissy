@@ -10,16 +10,15 @@
 
 "notification.gradeResultsUpdated" = "Your grade results were updated.";
 
-"main.lastFetch" = "Last Fetch:\n%@";
+"main.lastFetch" = "Last Fetch: %@";
 "main.lastFetch.never" = "Never";
 "main.fetchNow" = "Fetch Now";
 "main.fetchNow.notification.changeDetected" = "A change in your grade results has been detected.";
 "main.fetchNow.notification.noChangeDetected" = "There were no changes in your grade results.";
 "main.showGradesOverview" = "Show Overview of Grades";
-"main.fetchNewGradeResultsSetting" = "Fetch New Grade Results:\n%@";
-"main.fetchNewGradeResultsSetting.every15Minutes" = "Every 15 Minutes";
-"main.fetchNewGradeResultsSetting.every30Minutes" = "Every 30 Minutes";
-"main.fetchNewGradeResultsSetting.hourly" = "Hourly";
+"main.fetchMode" = "Fetch Mode: %@";
+"main.fetchMode.background" = "Background";
+"main.fetchMode.manual" = "Manual";
 "main.signOut" = "Sign Out";
 "main.loggedIn" = "Logged in as %@";
 

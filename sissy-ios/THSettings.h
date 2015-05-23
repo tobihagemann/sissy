@@ -8,21 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, THFetchNewGradeResultsOption) {
-	THFetchNewGradeResultsEvery15Minutes,
-	THFetchNewGradeResultsEvery30Minutes,
-	THFetchNewGradeResultsHourly
+typedef NS_ENUM(NSInteger, THFetchMode) {
+	THFetchModeBackground,
+	THFetchModeManual
 };
 
 @interface THSettings : NSObject
 
 @property (nonatomic, weak) NSDate *lastFetchDate;
-@property (nonatomic, assign) THFetchNewGradeResultsOption fetchNewGradeResultsSetting;
+@property (nonatomic, assign) THFetchMode fetchMode;
 @property (nonatomic, weak) NSString *username;
 @property (nonatomic, weak) NSString *password;
 @property (nonatomic, weak) NSString *lastHashedResults;
-
-@property (nonatomic, readonly, getter=fetchNewGradeResultsTimeInterval) NSTimeInterval fetchNewGradeResultsTimeInterval;
 @property (nonatomic, readonly, getter=loggedIn) BOOL loggedIn;
 
 + (instancetype)sharedInstance;

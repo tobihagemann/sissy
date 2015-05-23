@@ -24,7 +24,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 @property (nonatomic, weak) IBOutlet UILabel *lastFetchLabel;
 @property (nonatomic, weak) IBOutlet UIButton *fetchNowButton;
 @property (nonatomic, weak) IBOutlet UIButton *showGradesOverviewButton;
-@property (nonatomic, weak) IBOutlet UIButton *fetchNewGradeResultsSettingButton;
+@property (nonatomic, weak) IBOutlet UIButton *fetchModeButton;
 @property (nonatomic, weak) IBOutlet UIButton *signOutButton;
 @property (nonatomic, weak) IBOutlet UILabel *loggedInLabel;
 @end
@@ -42,13 +42,13 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 		[self updateLastFetchLabelWithDate:[THSettings sharedInstance].lastFetchDate];
 		[self updateFetchNowButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
 		[self updateShowGradesOverviewButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
-		[self updateFetchNewGradeResultsSettingButtonWithOption:[THSettings sharedInstance].fetchNewGradeResultsSetting];
+		[self updateFetchModeButtonWithMode:[THSettings sharedInstance].fetchMode];
 		[self updateSignOutButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
 		[self updateLoggedInLabelWithUsername:[THSettings sharedInstance].username];
 		
 		// Workaround: layoutIfNeeded because performWithoutAnimation is insufficient on UIButtons.
 		[self.showGradesOverviewButton layoutIfNeeded];
-		[self.fetchNewGradeResultsSettingButton layoutIfNeeded];
+		[self.fetchModeButton layoutIfNeeded];
 		[self.signOutButton layoutIfNeeded];
 	}];
 	
@@ -93,20 +93,17 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	}
 }
 
-- (void)updateFetchNewGradeResultsSettingButtonWithOption:(THFetchNewGradeResultsOption)option {
-	NSString *optionString;
-	switch (option) {
-		case THFetchNewGradeResultsEvery15Minutes:
-			optionString = NSLocalizedString(@"main.fetchNewGradeResultsSetting.every15Minutes", nil);
+- (void)updateFetchModeButtonWithMode:(THFetchMode)mode {
+	NSString *modeString;
+	switch (mode) {
+		case THFetchModeBackground:
+			modeString = NSLocalizedString(@"main.fetchMode.background", nil);
 			break;
-		case THFetchNewGradeResultsEvery30Minutes:
-			optionString = NSLocalizedString(@"main.fetchNewGradeResultsSetting.every30Minutes", nil);
-			break;
-		case THFetchNewGradeResultsHourly:
-			optionString = NSLocalizedString(@"main.fetchNewGradeResultsSetting.hourly", nil);
+		case THFetchModeManual:
+			modeString = NSLocalizedString(@"main.fetchMode.manual", nil);
 			break;
 	}
-	[self.fetchNewGradeResultsSettingButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"main.fetchNewGradeResultsSetting", nil), optionString] forState:UIControlStateNormal];
+	[self.fetchModeButton setTitle:[NSString stringWithFormat:NSLocalizedString(@"main.fetchMode", nil), modeString] forState:UIControlStateNormal];
 }
 
 - (void)updateSignOutButtonWithLoggedIn:(BOOL)loggedIn {
@@ -145,6 +142,19 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	}
 }
 
+- (void)updateFetchMode:(THFetchMode)mode {
+	switch (mode) {
+		case THFetchModeBackground: {
+			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+			break;
+		}
+		case THFetchModeManual: {
+			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+			break;
+		}
+	}
+}
+
 #pragma mark - Actions
 
 - (IBAction)fetchNow:(id)sender {
@@ -178,32 +188,28 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	[self presentViewController:gradesOverviewNavigationController animated:YES completion:nil];
 }
 
-- (IBAction)showFetchNewGradeResultsSetting:(id)sender {
+- (IBAction)showFetchMode:(id)sender {
 	UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	actionSheet.view.tintColor = [UIColor th_primaryColor];
-	void (^actionCallback)(THFetchNewGradeResultsOption) = ^(THFetchNewGradeResultsOption option) {
-		[THSettings sharedInstance].fetchNewGradeResultsSetting = option;
-		[self updateFetchNewGradeResultsSettingButtonWithOption:option];
-		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
+	void (^actionCallback)(THFetchMode) = ^(THFetchMode mode) {
+		[THSettings sharedInstance].fetchMode = mode;
+		[self updateFetchModeButtonWithMode:mode];
+		[self updateFetchMode:mode];
 	};
-	UIAlertAction *every15MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every15Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		actionCallback(THFetchNewGradeResultsEvery15Minutes);
+	UIAlertAction *backgroundAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchMode.background", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		actionCallback(THFetchModeBackground);
 	}];
-	[actionSheet addAction:every15MinutesAction];
-	UIAlertAction *every30MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every30Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		actionCallback(THFetchNewGradeResultsEvery30Minutes);
+	[actionSheet addAction:backgroundAction];
+	UIAlertAction *manualAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchMode.manual", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		actionCallback(THFetchModeManual);
 	}];
-	[actionSheet addAction:every30MinutesAction];
-	UIAlertAction *hourlyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.hourly", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		actionCallback(THFetchNewGradeResultsHourly);
-	}];
-	[actionSheet addAction:hourlyAction];
+	[actionSheet addAction:manualAction];
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"common.cancel", nil) style:UIAlertActionStyleCancel handler:nil];
 	[actionSheet addAction:cancelAction];
 	UIPopoverPresentationController *popver = actionSheet.popoverPresentationController;
 	if (popver) {
-		popver.sourceView = self.fetchNewGradeResultsSettingButton;
-		popver.sourceRect = self.fetchNewGradeResultsSettingButton.bounds;
+		popver.sourceView = self.fetchModeButton;
+		popver.sourceRect = self.fetchModeButton.bounds;
 	}
 	[self presentViewController:actionSheet animated:YES completion:nil];
 }
@@ -236,7 +242,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 			[weakSelf updateShowGradesOverviewButtonWithLoggedIn:YES];
 			[weakSelf updateSignOutButtonWithLoggedIn:YES];
 			[weakSelf updateLoggedInLabelWithUsername:username];
-			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
+			[weakSelf updateFetchMode:[THSettings sharedInstance].fetchMode];
 			if ([[UIApplication sharedApplication] currentUserNotificationSettings].types == UIUserNotificationTypeNone) {
 				[[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil]];
 			}

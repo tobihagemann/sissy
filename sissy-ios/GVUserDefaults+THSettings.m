@@ -11,7 +11,7 @@
 @implementation GVUserDefaults (THSettings)
 
 @dynamic lastFetchDate;
-@dynamic fetchNewGradeResultsSetting;
+@dynamic fetchMode;
 @dynamic username;
 @dynamic lastHashedResults;
 
