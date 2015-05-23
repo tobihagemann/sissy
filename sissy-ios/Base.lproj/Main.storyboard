@@ -90,6 +90,14 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2XJ-Bi-I1U">
+                                <rect key="frame" x="552" y="40" width="28" height="28"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" image="724-info"/>
+                                <connections>
+                                    <action selector="showInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VQp-8g-7UR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.61458474397659302" blue="0.88901197910308838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,6 +105,7 @@
                             <constraint firstItem="U0C-N3-VFz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="3au-dP-04q"/>
                             <constraint firstAttribute="centerX" secondItem="SKx-Ky-HKi" secondAttribute="centerX" id="3so-yz-O55"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SAK-Wc-gE2" secondAttribute="bottom" constant="15" id="600-eo-DFB"/>
+                            <constraint firstAttribute="trailing" secondItem="2XJ-Bi-I1U" secondAttribute="trailing" constant="20" id="Cvo-3f-vfN"/>
                             <constraint firstItem="SAK-Wc-gE2" firstAttribute="top" secondItem="ouf-aa-1k5" secondAttribute="bottom" id="FXH-g9-g03"/>
                             <constraint firstItem="ouf-aa-1k5" firstAttribute="top" secondItem="U0C-N3-VFz" secondAttribute="bottom" constant="8" id="GfL-sJ-Rol"/>
                             <constraint firstAttribute="centerX" secondItem="SAK-Wc-gE2" secondAttribute="centerX" id="LWq-Kn-BRo"/>
@@ -105,6 +114,7 @@
                             <constraint firstAttribute="trailing" secondItem="U0C-N3-VFz" secondAttribute="trailing" constant="30" id="Ov2-Yi-T3r"/>
                             <constraint firstAttribute="centerX" secondItem="ouf-aa-1k5" secondAttribute="centerX" id="QNg-u7-od9"/>
                             <constraint firstItem="SKx-Ky-HKi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="jGd-yN-2qo"/>
+                            <constraint firstItem="2XJ-Bi-I1U" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="mzg-fg-40S"/>
                             <constraint firstAttribute="centerY" secondItem="kGZ-kB-CRn" secondAttribute="centerY" priority="250" id="tRr-Rp-dn0"/>
                             <constraint firstItem="U0C-N3-VFz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kGZ-kB-CRn" secondAttribute="bottom" constant="30" id="wOF-et-n4E"/>
                             <constraint firstItem="kGZ-kB-CRn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xzh-Gr-y16"/>
@@ -144,6 +154,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="724-info" width="28" height="28"/>
         <image name="logo" width="202" height="40"/>
     </resources>
     <color key="tintColor" red="0.0" green="0.61458474397659302" blue="0.88901197910308838" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 tobiha.de. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "THWebViewController.h"
 
 typedef void (^THGradeResultsCallback)(NSString *gradeResults);
 
-@interface THGradesOverviewViewController : UIViewController
+@interface THGradesOverviewViewController : THWebViewController
 
 @property (nonatomic, strong) THGradeResultsCallback callback;
 

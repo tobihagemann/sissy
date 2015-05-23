@@ -29,5 +29,7 @@
 
 "gradesOverview.title" = "Notenspiegel";
 
+"info.title" = "Über sissy";
+
 "XLFormViewController_ValidationErrorTitle" = "Hoppla!";
 "%@ can't be empty" = "%@ muss ausgefüllt werden.";

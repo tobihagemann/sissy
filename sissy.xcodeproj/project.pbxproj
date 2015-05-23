@@ -11,6 +11,11 @@
 		42E8D8FE8BE9BE80F583216F /* libPods-sissy-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024A8540E5AF80577689B080 /* libPods-sissy-ios.a */; };
 		74578FCB1AAF4D66005DC4CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74578FCA1AAF4D66005DC4CD /* main.m */; };
 		747FF0661B10A11600987FED /* GBSettings+THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FF0651B10A11600987FED /* GBSettings+THSettings.m */; };
+		747FF0691B11246B00987FED /* THInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FF0681B11246B00987FED /* THInfoViewController.m */; };
+		747FF06C1B112A0500987FED /* info.html in Resources */ = {isa = PBXBuildFile; fileRef = 747FF06E1B112A0500987FED /* info.html */; };
+		747FF0721B112C0100987FED /* THWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FF0711B112C0100987FED /* THWebViewController.m */; };
+		747FF0741B112EB300987FED /* graderesults.html in Resources */ = {isa = PBXBuildFile; fileRef = 747FF0731B112EB300987FED /* graderesults.html */; };
+		747FF0761B112F8500987FED /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 747FF0751B112F8500987FED /* style.css */; };
 		74AC27781B0F2A5100EECF30 /* THSissyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AC27771B0F2A5100EECF30 /* THSissyController.m */; };
 		74C43F9A1B0F7C4E00464C34 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F991B0F7C4E00464C34 /* THMainViewController.m */; };
 		74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F9E1B0F832000464C34 /* GVUserDefaults+THSettings.m */; };
@@ -20,7 +25,6 @@
 		74C43FAA1B0F932E00464C34 /* THGradesOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FA91B0F932E00464C34 /* THGradesOverviewViewController.m */; };
 		74C43FAF1B0FA0AC00464C34 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74C43FAE1B0FA0AC00464C34 /* WebKit.framework */; };
 		74C43FB31B0FA0D900464C34 /* UIColor+THColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */; };
-		74C43FB71B0FA3C800464C34 /* graderesults.html in Resources */ = {isa = PBXBuildFile; fileRef = 74C43FB91B0FA3C800464C34 /* graderesults.html */; };
 		74C43FBD1B0FA46A00464C34 /* THNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43FBC1B0FA46A00464C34 /* THNotificationView.m */; };
 		74E6DD4D1B0F12100068C672 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6DD4C1B0F12100068C672 /* main.m */; };
 		74E6DD501B0F12100068C672 /* THAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6DD4F1B0F12100068C672 /* THAppDelegate.m */; };
@@ -54,6 +58,14 @@
 		74578FCA1AAF4D66005DC4CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		747FF0641B10A11600987FED /* GBSettings+THSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBSettings+THSettings.h"; sourceTree = "<group>"; };
 		747FF0651B10A11600987FED /* GBSettings+THSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GBSettings+THSettings.m"; sourceTree = "<group>"; };
+		747FF0671B11246B00987FED /* THInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THInfoViewController.h; sourceTree = "<group>"; };
+		747FF0681B11246B00987FED /* THInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THInfoViewController.m; sourceTree = "<group>"; };
+		747FF06D1B112A0500987FED /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/info.html; sourceTree = "<group>"; };
+		747FF06F1B112A0600987FED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/info.html; sourceTree = "<group>"; };
+		747FF0701B112C0100987FED /* THWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWebViewController.h; sourceTree = "<group>"; };
+		747FF0711B112C0100987FED /* THWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWebViewController.m; sourceTree = "<group>"; };
+		747FF0731B112EB300987FED /* graderesults.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = graderesults.html; sourceTree = "<group>"; };
+		747FF0751B112F8500987FED /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		74AC27761B0F2A5100EECF30 /* THSissyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSissyController.h; sourceTree = "<group>"; };
 		74AC27771B0F2A5100EECF30 /* THSissyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSissyController.m; sourceTree = "<group>"; };
 		74C43F951B0F68BC00464C34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,8 +83,6 @@
 		74C43FAE1B0FA0AC00464C34 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		74C43FB11B0FA0D900464C34 /* UIColor+THColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+THColors.h"; sourceTree = "<group>"; };
 		74C43FB21B0FA0D900464C34 /* UIColor+THColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+THColors.m"; sourceTree = "<group>"; };
-		74C43FB81B0FA3C800464C34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/graderesults.html; sourceTree = "<group>"; };
-		74C43FBA1B0FA3C900464C34 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/graderesults.html; sourceTree = "<group>"; };
 		74C43FBB1B0FA46A00464C34 /* THNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNotificationView.h; sourceTree = "<group>"; };
 		74C43FBC1B0FA46A00464C34 /* THNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNotificationView.m; sourceTree = "<group>"; };
 		74E6DD481B0F12100068C672 /* sissy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sissy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +181,12 @@
 				74C43F991B0F7C4E00464C34 /* THMainViewController.m */,
 				74C43FA51B0F932400464C34 /* THLoginViewController.h */,
 				74C43FA61B0F932400464C34 /* THLoginViewController.m */,
+				747FF0701B112C0100987FED /* THWebViewController.h */,
+				747FF0711B112C0100987FED /* THWebViewController.m */,
 				74C43FA81B0F932E00464C34 /* THGradesOverviewViewController.h */,
 				74C43FA91B0F932E00464C34 /* THGradesOverviewViewController.m */,
+				747FF0671B11246B00987FED /* THInfoViewController.h */,
+				747FF0681B11246B00987FED /* THInfoViewController.m */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -202,7 +216,9 @@
 		74C43FB41B0FA1A500464C34 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				74C43FB91B0FA3C800464C34 /* graderesults.html */,
+				747FF0751B112F8500987FED /* style.css */,
+				747FF0731B112EB300987FED /* graderesults.html */,
+				747FF06E1B112A0500987FED /* info.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -346,11 +362,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C43FB71B0FA3C800464C34 /* graderesults.html in Resources */,
 				74E6DD561B0F12100068C672 /* Main.storyboard in Resources */,
+				747FF06C1B112A0500987FED /* info.html in Resources */,
+				747FF0761B112F8500987FED /* style.css in Resources */,
 				74C43FA31B0F8C8600464C34 /* Localizable.strings in Resources */,
 				74E6DD5B1B0F12100068C672 /* LaunchScreen.xib in Resources */,
 				74E6DD581B0F12100068C672 /* Images.xcassets in Resources */,
+				747FF0741B112EB300987FED /* graderesults.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +472,8 @@
 				74C43FBD1B0FA46A00464C34 /* THNotificationView.m in Sources */,
 				74E6DD4D1B0F12100068C672 /* main.m in Sources */,
 				74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */,
+				747FF0721B112C0100987FED /* THWebViewController.m in Sources */,
+				747FF0691B11246B00987FED /* THInfoViewController.m in Sources */,
 				74C43FB31B0FA0D900464C34 /* UIColor+THColors.m in Sources */,
 				74E6DD981B0F1AB50068C672 /* THSissyService.m in Sources */,
 				74C43FAA1B0F932E00464C34 /* THGradesOverviewViewController.m in Sources */,
@@ -467,6 +487,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		747FF06E1B112A0500987FED /* info.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				747FF06D1B112A0500987FED /* en */,
+				747FF06F1B112A0600987FED /* de */,
+			);
+			name = info.html;
+			sourceTree = "<group>";
+		};
 		74C43F961B0F68BC00464C34 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -474,15 +503,6 @@
 				74C43F971B0F68C900464C34 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		74C43FB91B0FA3C800464C34 /* graderesults.html */ = {
-			isa = PBXVariantGroup;
-			children = (
-				74C43FB81B0FA3C800464C34 /* en */,
-				74C43FBA1B0FA3C900464C34 /* de */,
-			);
-			name = graderesults.html;
 			sourceTree = "<group>";
 		};
 		74E6DD541B0F12100068C672 /* Main.storyboard */ = {

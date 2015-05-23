@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <script src="jquery-2.1.4.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    $(document).ready(function() {
+      $('a').bind('touchstart', function() {
+        $(this).addClass('touched');
+      });
+      $('a').bind('touchend', function() {
+        $(this).removeClass('touched');
+      });
+    });
+    /* ]]> */
+  </script>
+</head>
+
+<body>
+  <h1>Über sissy</h1>
+  <p>Werde benachrichtigt, wenn dein Notenspiegel für die Hochschule Bonn-Rhein-Sieg sich aktualisiert hat. sissy ist komplett als Open Source auf GitHub verfügbar: <a href="https://github.com/MuscleRumble/sissy">https://github.com/MuscleRumble/sissy</a>.</p>
+
+  <h2>Datenschutzerklärung</h2>
+  <p>sissy sammelt keine personenbezogene Daten. Deine Daten werden sicher in den iOS Keychain Services gespeichert.</p>
+
+  <h2>Entwickelt von</h2>
+  <ul>
+    <li><a href="https://twitter.com/MuscleRumble">Tobias Hagemann, @MuscleRumble</a></li>
+  </ul>
+
+  <h2>Open Source Anerkennungen</h2>
+  <ul>
+    <li><a href="https://github.com/AFNetworking/AFNetworking">AFNetworking von Mattt Thompson</a></li>
+    <li><a href="https://github.com/problame/CSNotificationView">CSNotificationView von Christian Schwarz</a></li>
+    <li><a href="https://github.com/gangverk/GVUserDefaults">GVUserDefaults von Kevin Renskers</a></li>
+    <li><a href="https://github.com/nicklockwood/FXKeychain">FXKeychain von Nick Lockwood</a></li>
+    <li><a href="https://github.com/billgarrison/SORelativeDateTransformer">SORelativeDateTransformer von William Garrison</a></li>
+    <li><a href="https://github.com/TransitApp/SVProgressHUD">SVProgressHUD von Sam Vermette</a></li>
+    <li><a href="https://github.com/xmartlabs/XLForm">XLForm von Martin Barreto</a></li>
+  </ul>
+
+  <h2>Lizenz</h2>
+  <p>Die MIT-Lizenz (MIT)</p>
+  <p>Hiermit wird unentgeltlich jeder Person, die eine Kopie der Software und der zugehörigen Dokumentationen (die "Software") erhält, die Erlaubnis erteilt, sie uneingeschränkt zu benutzen, inklusive und ohne Ausnahme dem Recht, sie zu verwenden, kopieren,
+    ändern, fusionieren, verlegen, verbreiten, unterlizenzieren und/oder zu verkaufen, und Personen, die diese Software erhalten, diese Rechte zu geben, unter den folgenden Bedingungen:</p>
+  <p>Der obige Urheberrechtsvermerk und dieser Erlaubnisvermerk sind in allen Kopien oder Teilkopien der Software beizulegen.</p>
+  <p>DIE SOFTWARE WIRD OHNE JEDE AUSDRÜCKLICHE ODER IMPLIZIERTE GARANTIE BEREITGESTELLT, EINSCHLIESSLICH DER GARANTIE ZUR BENUTZUNG FÜR DEN VORGESEHENEN ODER EINEM BESTIMMTEN ZWECK SOWIE JEGLICHER RECHTSVERLETZUNG, JEDOCH NICHT DARAUF BESCHRÄNKT. IN KEINEM
+    FALL SIND DIE AUTOREN ODER COPYRIGHTINHABER FÜR JEGLICHEN SCHADEN ODER SONSTIGE ANSPRÜCHE HAFTBAR ZU MACHEN, OB INFOLGE DER ERFÜLLUNG EINES VERTRAGES, EINES DELIKTES ODER ANDERS IM ZUSAMMENHANG MIT DER SOFTWARE ODER SONSTIGER VERWENDUNG DER SOFTWARE
+    ENTSTANDEN.
+  </p>
+</body>
+
+</html>

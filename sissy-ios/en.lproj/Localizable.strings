@@ -29,5 +29,7 @@
 
 "gradesOverview.title" = "Overview of Grades";
 
+"info.title" = "About sissy";
+
 "XLFormViewController_ValidationErrorTitle" = "Whoops!";
 "%@ can't be empty" = "%@ can't be empty.";

@@ -8,33 +8,16 @@
 
 #import "THGradesOverviewViewController.h"
 
-#import <WebKit/WebKit.h>
 #import "THSissyService.h"
 #import "THSettings.h"
-#import "UIColor+THColors.h"
 #import "THNotificationView.h"
-
-@interface THGradesOverviewViewController ()
-@property (nonatomic, strong) WKWebView *webView;
-@end
 
 @implementation THGradesOverviewViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.view.tintColor = [UIColor th_primaryColor];
-	self.view.backgroundColor = [UIColor whiteColor];
-
-	self.navigationController.navigationBar.tintColor = [UIColor th_primaryColor];
 	self.navigationItem.title = NSLocalizedString(@"gradesOverview.title", nil);
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissScreen:)];
-
-	self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-	self.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.webView.backgroundColor = [UIColor clearColor];
-	self.webView.opaque = NO;
-	[self.view addSubview:self.webView];
 
 	[self loadGradeResults];
 }
@@ -53,12 +36,12 @@
 			if (weakSelf.callback) {
 				weakSelf.callback(gradeResults);
 			}
-			[weakSelf showGradesOverview:gradeResults];
+			[weakSelf loadGradesOverviewWithGradeResults:gradeResults];
 		}
 	}];
 }
 
-- (void)showGradesOverview:(NSString *)gradeResults {
+- (void)loadGradesOverviewWithGradeResults:(NSString *)gradeResults {
 	NSError *error;
 	NSURL *htmlUrl = [[NSBundle mainBundle] URLForResource:@"graderesults" withExtension:@"html"];
 	NSString *htmlTemplate = [NSString stringWithContentsOfURL:htmlUrl encoding:NSUTF8StringEncoding error:&error];
@@ -68,12 +51,6 @@
 		NSString *htmlString = [NSString stringWithFormat:htmlTemplate, gradeResults];
 		[self.webView loadHTMLString:htmlString baseURL:[NSBundle mainBundle].bundleURL];
 	}
-}
-
-#pragma mark - Actions
-
-- (void)dismissScreen:(id)sender {
-	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

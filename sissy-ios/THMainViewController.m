@@ -15,6 +15,7 @@
 #import "THSettings.h"
 #import "THLoginViewController.h"
 #import "THGradesOverviewViewController.h"
+#import "THInfoViewController.h"
 #import "UIColor+THColors.h"
 #import "THNotificationView.h"
 
@@ -144,14 +145,12 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 
 - (void)updateFetchMode:(THFetchMode)mode {
 	switch (mode) {
-		case THFetchModeBackground: {
+		case THFetchModeBackground:
 			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 			break;
-		}
-		case THFetchModeManual: {
+		case THFetchModeManual:
 			[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 			break;
-		}
 	}
 }
 
@@ -223,6 +222,13 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	[self updateLoggedInLabelWithUsername:nil];
 	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 	[self performSegueWithIdentifier:kTHMainShowLoginSegueIdentifier sender:nil];
+}
+
+- (IBAction)showInfo:(id)sender {
+	THInfoViewController *infoViewController = [[THInfoViewController alloc] init];
+	UINavigationController *infoNavigationController = [[UINavigationController alloc] initWithRootViewController:infoViewController];
+	infoNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+	[self presentViewController:infoNavigationController animated:YES completion:nil];
 }
 
 #pragma mark - Navigation
