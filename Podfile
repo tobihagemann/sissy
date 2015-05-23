@@ -16,5 +16,6 @@ target "sissy-ios" do
 	pod 'FXKeychain', '~> 1.5.2'
 	pod 'GVUserDefaults', '~> 1.0.1'
 	pod 'SORelativeDateTransformer', '~> 1.1.10'
+	pod 'SVProgressHUD', '~> 1.1.3'
 	pod 'XLForm', :head
 end

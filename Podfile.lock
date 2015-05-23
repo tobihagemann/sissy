@@ -26,6 +26,7 @@ PODS:
   - GVUserDefaults (1.0.1)
   - hpple (0.3.0)
   - SORelativeDateTransformer (1.1.10)
+  - SVProgressHUD (1.1.3)
   - XLForm (HEAD based on 2.2.0)
 
 DEPENDENCIES:
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - GVUserDefaults (~> 1.0.1)
   - hpple (from `https://github.com/MuscleRumble/hpple`)
   - SORelativeDateTransformer (~> 1.1.10)
+  - SVProgressHUD (~> 1.1.3)
   - XLForm (HEAD)
 
 EXTERNAL SOURCES:
@@ -60,6 +62,7 @@ SPEC CHECKSUMS:
   GVUserDefaults: acb40729f70984008d0650e49d7e422f1bbfa597
   hpple: 37ac0a804d0f8a7f488712b5ff5f06129e1c9e31
   SORelativeDateTransformer: 307489386df4697780902bc16e99881d69a629b3
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   XLForm: 799e61ef230f519914e722bf032b19a597223c19
 
 COCOAPODS: 0.37.1

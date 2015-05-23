@@ -8,6 +8,8 @@
 
 #import "THLoginViewController.h"
 
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <XLForm/UIView+XLFormAdditions.h>
 #import "THSissyService.h"
 #import "UIColor+THColors.h"
 #import "THNotificationView.h"
@@ -41,7 +43,7 @@ NSString *const kTHLoginActionTag = @"login";
 	XLFormSectionDescriptor *section = [XLFormSectionDescriptor formSection];
 	[form addFormSection:section];
 	
-	self.usernameRow = [XLFormRowDescriptor formRowDescriptorWithTag:kTHLoginUsernameTag rowType:XLFormRowDescriptorTypeName title:NSLocalizedString(@"login.username", nil)];
+	self.usernameRow = [XLFormRowDescriptor formRowDescriptorWithTag:kTHLoginUsernameTag rowType:XLFormRowDescriptorTypeAccount title:NSLocalizedString(@"login.username", nil)];
 	self.usernameRow.cellConfigAtConfigure[@"textField.placeholder"] = self.usernameRow.title;
 	self.usernameRow.cellConfigAtConfigure[@"imageView.image"] = [UIImage imageNamed:@"973-user"];
 	self.usernameRow.cellConfig[@"textLabel.text"] = @"";
@@ -74,6 +76,19 @@ NSString *const kTHLoginActionTag = @"login";
 	return self.passwordRow.value;
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if ([super textFieldShouldReturn:textField]) {
+		UITableViewCell<XLFormDescriptorCell> *cell = [textField formDescriptorCell];
+		if ([cell.rowDescriptor.tag isEqualToString:kTHLoginPasswordTag]) {
+			[self login];
+		}
+		return YES;
+	}
+	return NO;
+}
+
 #pragma mark - Actions
 
 - (void)login {
@@ -81,23 +96,42 @@ NSString *const kTHLoginActionTag = @"login";
 	if (validationErrors.count > 0) {
 		NSError *validationError = validationErrors.firstObject;
 		[THNotificationView showWarningInViewController:self message:validationError.localizedDescription];
+		[self firstInvalidRowBecomeFirstResponder];
 		return;
 	}
 	
+	[SVProgressHUD showWithStatus:nil maskType:SVProgressHUDMaskTypeBlack];
 	NSString *username = self.username;
 	NSString *password = self.password;
 	__weak typeof(self) weakSelf = self;
 	[THSissyService gradeResultsWithUsername:username password:password callback:^(NSString *gradeResults, NSError *error) {
 		if (error) {
+			[SVProgressHUD dismiss];
 			[THNotificationView showErrorInViewController:weakSelf message:error.localizedDescription];
 			[weakSelf resetPasswordRowAndBecomeFirstResponder];
 		} else {
+			[SVProgressHUD showSuccessWithStatus:nil];
 			if (weakSelf.callback) {
 				weakSelf.callback(username, password, gradeResults);
 			}
 			[weakSelf dismissViewControllerAnimated:YES completion:nil];
 		}
 	}];
+}
+
+- (void)firstInvalidRowBecomeFirstResponder {
+	for (XLFormSectionDescriptor *section in self.form.formSections) {
+		for (XLFormRowDescriptor *row in section.formRows) {
+			XLFormValidationStatus *status = [row doValidation];
+			if (status && !status.isValid) {
+				UITableViewCell<XLFormDescriptorCell> *cell = [row cellForFormController:self];
+				if ([cell formDescriptorCellCanBecomeFirstResponder]){
+					[cell formDescriptorCellBecomeFirstResponder];
+					break;
+				}
+			}
+		}
+	}
 }
 
 - (void)resetPasswordRowAndBecomeFirstResponder {

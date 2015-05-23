@@ -13,6 +13,7 @@
 #import "THSettings.h"
 #import "THLoginViewController.h"
 #import "THGradesOverviewViewController.h"
+#import "UIColor+THColors.h"
 
 NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 
@@ -129,6 +130,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 
 - (IBAction)showFetchNewGradeResultsSetting:(id)sender {
 	UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	actionSheet.view.tintColor = [UIColor th_primaryColor];
 	UIAlertAction *every15MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every15Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsEvery15Minutes;
 		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsEvery15Minutes];
@@ -149,6 +151,11 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	[actionSheet addAction:hourlyAction];
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"common.cancel", nil) style:UIAlertActionStyleCancel handler:nil];
 	[actionSheet addAction:cancelAction];
+	UIPopoverPresentationController *popver = actionSheet.popoverPresentationController;
+	if (popver) {
+		popver.sourceView = self.fetchNewGradeResultsSettingButton;
+		popver.sourceRect = self.fetchNewGradeResultsSettingButton.bounds;
+	}
 	[self presentViewController:actionSheet animated:YES completion:nil];
 }
 
@@ -184,10 +191,6 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 			}
 		};
 	}
-}
-
-- (void)askForUserNotificationPermission {
-	
 }
 
 #pragma mark - Notifications
