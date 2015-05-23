@@ -22,7 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - CSNotificationView (0.5.4)
   - FXKeychain (1.5.3)
-  - GBCli (1.1)
+  - GBCli (HEAD based on 1.1)
   - GVUserDefaults (1.0.1)
   - hpple (0.3.0)
   - SORelativeDateTransformer (1.1.10)
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - CSNotificationView (from `https://github.com/MuscleRumble/CSNotificationView`)
   - FXKeychain (~> 1.5.3)
-  - GBCli (~> 1.1)
+  - GBCli (HEAD)
   - GVUserDefaults (~> 1.0.1)
   - hpple (from `https://github.com/MuscleRumble/hpple`)
   - SORelativeDateTransformer (~> 1.1.10)

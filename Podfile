@@ -6,7 +6,7 @@ end
 target "sissy-osx" do
 	platform :osx, '10.10'
 	import_common_pods
-	pod 'GBCli', '~> 1.1'
+	pod 'GBCli', :head
 end
 
 target "sissy-ios" do
