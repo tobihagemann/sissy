@@ -10,6 +10,7 @@
 		25331CEB9D9ED947019539F2 /* libPods-sissy-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F6B562D5A75A4EDF257759 /* libPods-sissy-osx.a */; };
 		42E8D8FE8BE9BE80F583216F /* libPods-sissy-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 024A8540E5AF80577689B080 /* libPods-sissy-ios.a */; };
 		74578FCB1AAF4D66005DC4CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 74578FCA1AAF4D66005DC4CD /* main.m */; };
+		747FF0661B10A11600987FED /* GBSettings+THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FF0651B10A11600987FED /* GBSettings+THSettings.m */; };
 		74AC27781B0F2A5100EECF30 /* THSissyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AC27771B0F2A5100EECF30 /* THSissyController.m */; };
 		74C43F9A1B0F7C4E00464C34 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F991B0F7C4E00464C34 /* THMainViewController.m */; };
 		74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F9E1B0F832000464C34 /* GVUserDefaults+THSettings.m */; };
@@ -51,6 +52,8 @@
 		55F6B562D5A75A4EDF257759 /* libPods-sissy-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-sissy-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74578FC71AAF4D66005DC4CD /* sissy */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sissy; sourceTree = BUILT_PRODUCTS_DIR; };
 		74578FCA1AAF4D66005DC4CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		747FF0641B10A11600987FED /* GBSettings+THSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GBSettings+THSettings.h"; sourceTree = "<group>"; };
+		747FF0651B10A11600987FED /* GBSettings+THSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GBSettings+THSettings.m"; sourceTree = "<group>"; };
 		74AC27761B0F2A5100EECF30 /* THSissyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSissyController.h; sourceTree = "<group>"; };
 		74AC27771B0F2A5100EECF30 /* THSissyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSissyController.m; sourceTree = "<group>"; };
 		74C43F951B0F68BC00464C34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 		74578FC91AAF4D66005DC4CD /* sissy-osx */ = {
 			isa = PBXGroup;
 			children = (
+				747FF0641B10A11600987FED /* GBSettings+THSettings.h */,
+				747FF0651B10A11600987FED /* GBSettings+THSettings.m */,
 				74AC27761B0F2A5100EECF30 /* THSissyController.h */,
 				74AC27771B0F2A5100EECF30 /* THSissyController.m */,
 				74AC27791B0F2A5F00EECF30 /* Supporting Files */,
@@ -434,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74578FCB1AAF4D66005DC4CD /* main.m in Sources */,
+				747FF0661B10A11600987FED /* GBSettings+THSettings.m in Sources */,
 				74AC27781B0F2A5100EECF30 /* THSissyController.m in Sources */,
 				74E6DD991B0F1AB70068C672 /* NSString+THExtensions.m in Sources */,
 				74E6DD971B0F1AB40068C672 /* THSissyService.m in Sources */,

@@ -21,7 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - CSNotificationView (0.5.4)
-  - FXKeychain (1.5.2)
+  - FXKeychain (1.5.3)
   - GBCli (1.1)
   - GVUserDefaults (1.0.1)
   - hpple (0.3.0)
@@ -32,7 +32,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - CSNotificationView (from `https://github.com/MuscleRumble/CSNotificationView`)
-  - FXKeychain (~> 1.5.2)
+  - FXKeychain (~> 1.5.3)
   - GBCli (~> 1.1)
   - GVUserDefaults (~> 1.0.1)
   - hpple (from `https://github.com/MuscleRumble/hpple`)
@@ -57,7 +57,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CSNotificationView: 0792f5220163c2befaf1a9716aa3d5a7d6bd4fb1
-  FXKeychain: 1a711bddc04a2bd69850dcfe297b8a43027a9980
+  FXKeychain: 2fe54573946ffef634f4e2a2851e6c8f4ea15e76
   GBCli: e5f988fadb68e1e3c01919f134009fed9796fde0
   GVUserDefaults: acb40729f70984008d0650e49d7e422f1bbfa597
   hpple: 37ac0a804d0f8a7f488712b5ff5f06129e1c9e31

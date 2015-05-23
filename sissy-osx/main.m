@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <GBCli/GBCli.h>
+#import "GBSettings+THSettings.h"
 #import "THSissyController.h"
 
 @implementation NSBundle (THSwizzle)
@@ -35,21 +36,40 @@ BOOL installNSBundleHook() {
 int main(int argc, char **argv) {
 	@autoreleasepool {
 		if (installNSBundleHook()) {
+			GBSettings *factoryDefaults = [GBSettings settingsWithName:@"Factory" parent:nil];
+			[factoryDefaults setFloat:900.0 forKey:@"interval"];
+			GBSettings *settings = [GBSettings settingsWithName:@"CmdLine" parent:factoryDefaults];
+
+			GBOptionsHelper *options = [[GBOptionsHelper alloc] init];
+			[options registerOption:'u' long:@"username" description:@"Username" flags:GBOptionRequiredValue];
+			[options registerOption:'p' long:@"password" description:@"Password" flags:GBOptionRequiredValue];
+			[options registerOption:'i' long:@"interval" description:@"Interval in seconds (default: 900 [15 minutes])" flags:GBOptionRequiredValue];
+			[options registerOption:'?' long:@"help" description:@"Display this help and exit" flags:GBOptionNoValue | GBOptionNoPrint];
+
 			GBCommandLineParser *parser = [[GBCommandLineParser alloc] init];
 			[parser registerOption:@"username" shortcut:'u' requirement:GBValueRequired];
 			[parser registerOption:@"password" shortcut:'p' requirement:GBValueRequired];
+			[parser registerOption:@"interval" shortcut:'i' requirement:GBValueRequired];
 
-			GBSettings *settings = [GBSettings settingsWithName:@"CmdLine" parent:nil];
 			[parser registerSettings:settings];
-			if (![parser parseOptionsWithArguments:argv count:argc] || (![settings objectForKey:@"username"] && ![settings objectForKey:@"password"])) {
-				NSLog(@"Invalid arguments. Specify username and password with: -u <username> -p <password>");
-				return 1;
+			[parser registerOptions:options];
+			if (![parser parseOptionsWithArguments:argv count:argc]) {
+				gbprintln(@"Errors in command line parameters!");
+				[options printHelp];
+				return EXIT_FAILURE;
+			} else if (settings.printHelp || argc == 1) {
+				[options printHelp];
+				return EXIT_SUCCESS;
+			} else if (![settings objectForKey:@"username"] || ![settings objectForKey:@"password"]) {
+				gbprintln(@"You have to set a username and password.");
+				[options printHelp];
+				return EXIT_FAILURE;
 			}
 
 			THSissyController *sissyController = [[THSissyController alloc] initWithUsername:[settings objectForKey:@"username"] password:[settings objectForKey:@"password"]];
-			[sissyController runPeriodiciallyWithInterval:900];
+			[sissyController runPeriodiciallyWithInterval:[settings floatForKey:@"interval"]];
 			[[NSRunLoop currentRunLoop] run];
 		}
 	}
-	return 0;
+	return EXIT_SUCCESS;
 }
