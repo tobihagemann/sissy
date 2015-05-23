@@ -11,6 +11,7 @@
 @interface THNotificationView : CSNotificationView
 
 + (void)showSuccessInViewController:(UIViewController *)viewController message:(NSString *)message;
++ (void)showInfoInViewController:(UIViewController *)viewController message:(NSString *)message;
 + (void)showWarningInViewController:(UIViewController *)viewController message:(NSString *)message;
 + (void)showErrorInViewController:(UIViewController *)viewController message:(NSString *)message;
 

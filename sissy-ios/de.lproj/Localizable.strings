@@ -8,10 +8,13 @@
 
 "common.cancel" = "Abbrechen";
 
-"notification.changeDetected" = "Dein Notenspiegel wurde aktualisiert.";
+"notification.gradeResultsUpdated" = "Dein Notenspiegel wurde aktualisiert.";
 
 "main.lastFetch" = "Letzter Abruf:\n%@";
 "main.lastFetch.never" = "Nie";
+"main.fetchNow" = "Jetzt abrufen";
+"main.fetchNow.notification.changeDetected" = "Es wurde eine Änderung in deinem Notenspiegel festgestellt.";
+"main.fetchNow.notification.noChangeDetected" = "Dein Notenspiegel hat sich nicht verändert.";
 "main.showGradesOverview" = "Notenspiegel anzeigen";
 "main.fetchNewGradeResultsSetting" = "Neuen Notenspiegel abrufen: %@";
 "main.fetchNewGradeResultsSetting.every15Minutes" = "Alle 15 Minuten";

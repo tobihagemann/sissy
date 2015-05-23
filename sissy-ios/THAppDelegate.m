@@ -20,13 +20,13 @@
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-	NSString *username = [THSettings sharedInstance].username;
-	NSString *password = [THSettings sharedInstance].password;
-	if (!username || !password) {
+	if (![THSettings sharedInstance].loggedIn) {
 		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 		completionHandler(UIBackgroundFetchResultFailed);
 		return;
 	}
+	NSString *username = [THSettings sharedInstance].username;
+	NSString *password = [THSettings sharedInstance].password;
 	__weak typeof(self) weakSelf = self;
 	[THSissyService gradeResultsWithUsername:username password:password callback:^(NSString *gradeResults, NSError *error) {
 		if (error) {

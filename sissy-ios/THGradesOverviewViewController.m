@@ -40,11 +40,11 @@
 }
 
 - (void)loadGradeResults {
-	NSString *username = [THSettings sharedInstance].username;
-	NSString *password = [THSettings sharedInstance].password;
-	if (!username || !password) {
+	if (![THSettings sharedInstance].loggedIn) {
 		return;
 	}
+	NSString *username = [THSettings sharedInstance].username;
+	NSString *password = [THSettings sharedInstance].password;
 	__weak typeof(self) weakSelf = self;
 	[THSissyService gradeResultsWithUsername:username password:password callback:^(NSString *gradeResults, NSError *error) {
 		if (error) {
@@ -53,12 +53,12 @@
 			if (weakSelf.callback) {
 				weakSelf.callback(gradeResults);
 			}
-			[weakSelf showGradeResults:gradeResults];
+			[weakSelf showGradesOverview:gradeResults];
 		}
 	}];
 }
 
-- (void)showGradeResults:(NSString *)gradeResults {
+- (void)showGradesOverview:(NSString *)gradeResults {
 	NSError *error;
 	NSURL *htmlUrl = [[NSBundle mainBundle] URLForResource:@"graderesults" withExtension:@"html"];
 	NSString *htmlTemplate = [NSString stringWithContentsOfURL:htmlUrl encoding:NSUTF8StringEncoding error:&error];

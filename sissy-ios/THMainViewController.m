@@ -9,16 +9,20 @@
 #import "THMainViewController.h"
 
 #import <SORelativeDateTransformer/SORelativeDateTransformer.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "NSString+THExtensions.h"
+#import "THSissyService.h"
 #import "THSettings.h"
 #import "THLoginViewController.h"
 #import "THGradesOverviewViewController.h"
 #import "UIColor+THColors.h"
+#import "THNotificationView.h"
 
 NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 
 @interface THMainViewController ()
 @property (nonatomic, weak) IBOutlet UILabel *lastFetchLabel;
+@property (nonatomic, weak) IBOutlet UIButton *fetchNowButton;
 @property (nonatomic, weak) IBOutlet UIButton *showGradesOverviewButton;
 @property (nonatomic, weak) IBOutlet UIButton *fetchNewGradeResultsSettingButton;
 @property (nonatomic, weak) IBOutlet UIButton *signOutButton;
@@ -36,6 +40,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	
 	[UIView performWithoutAnimation:^{
 		[self updateLastFetchLabelWithDate:[THSettings sharedInstance].lastFetchDate];
+		[self updateFetchNowButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
 		[self updateShowGradesOverviewButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
 		[self updateFetchNewGradeResultsSettingButtonWithOption:[THSettings sharedInstance].fetchNewGradeResultsSetting];
 		[self updateSignOutButtonWithLoggedIn:[THSettings sharedInstance].loggedIn];
@@ -66,6 +71,16 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 		relativeDateString = NSLocalizedString(@"main.lastFetch.never", nil);
 	}
 	self.lastFetchLabel.text = [NSString stringWithFormat:NSLocalizedString(@"main.lastFetch", nil), relativeDateString];
+}
+
+- (void)updateFetchNowButtonWithLoggedIn:(BOOL)loggedIn {
+	if (loggedIn) {
+		[self.fetchNowButton setTitle:NSLocalizedString(@"main.fetchNow", nil) forState:UIControlStateNormal];
+		self.fetchNowButton.enabled = YES;
+	} else {
+		[self.fetchNowButton setTitle:nil forState:UIControlStateNormal];
+		self.fetchNowButton.enabled = NO;
+	}
 }
 
 - (void)updateShowGradesOverviewButtonWithLoggedIn:(BOOL)loggedIn {
@@ -112,41 +127,75 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	}
 }
 
+- (void)updateGradeResults:(NSString *)gradeResults fromViewController:(UIViewController *)viewController {
+	NSDate *fetchDate = [NSDate date];
+	[THSettings sharedInstance].lastFetchDate = fetchDate;
+	[self updateLastFetchLabelWithDate:fetchDate];
+	[self detectChangeInGradeResults:gradeResults fromViewController:viewController];
+	[THSettings sharedInstance].lastHashedResults = [gradeResults th_sha1];
+}
+
+- (void)detectChangeInGradeResults:(NSString *)gradeResults fromViewController:(UIViewController *)viewController {
+	NSString *lastHashedResults = [THSettings sharedInstance].lastHashedResults;
+	NSString *hashedResults = [gradeResults th_sha1];
+	if ([hashedResults isEqualToString:lastHashedResults]) {
+		[THNotificationView showInfoInViewController:viewController message:NSLocalizedString(@"main.fetchNow.notification.noChangeDetected", nil)];
+	} else {
+		[THNotificationView showSuccessInViewController:viewController message:NSLocalizedString(@"main.fetchNow.notification.changeDetected", nil)];
+	}
+}
+
 #pragma mark - Actions
 
-- (IBAction)showGradeResults:(id)sender {
-	THGradesOverviewViewController *gradeResultsViewController = [[THGradesOverviewViewController alloc] init];
+- (IBAction)fetchNow:(id)sender {
+	if (![THSettings sharedInstance].loggedIn) {
+		[self signOut:sender];
+		return;
+	}
+	[SVProgressHUD showWithStatus:nil maskType:SVProgressHUDMaskTypeBlack];
+	NSString *username = [THSettings sharedInstance].username;
+	NSString *password = [THSettings sharedInstance].password;
 	__weak typeof(self) weakSelf = self;
-	gradeResultsViewController.callback = ^(NSString *gradeResults) {
-		NSDate *fetchDate = [NSDate date];
-		[THSettings sharedInstance].lastFetchDate = fetchDate;
-		[THSettings sharedInstance].lastHashedResults = [gradeResults th_sha1];
-		[weakSelf updateLastFetchLabelWithDate:fetchDate];
+	[THSissyService gradeResultsWithUsername:username password:password callback:^(NSString *gradeResults, NSError *error) {
+		[SVProgressHUD dismiss];
+		if (error) {
+			[THNotificationView showErrorInViewController:weakSelf message:error.localizedDescription];
+		} else {
+			[weakSelf updateGradeResults:gradeResults fromViewController:weakSelf];
+		}
+	}];
+}
+
+- (IBAction)showGradesOverview:(id)sender {
+	THGradesOverviewViewController *gradesOverviewViewController = [[THGradesOverviewViewController alloc] init];
+	__weak THGradesOverviewViewController *weakGradesOverviewViewController = gradesOverviewViewController;
+	__weak typeof(self) weakSelf = self;
+	gradesOverviewViewController.callback = ^(NSString *gradeResults) {
+		[weakSelf updateGradeResults:gradeResults fromViewController:weakGradesOverviewViewController];
 	};
-	UINavigationController *gradeResultsNavigationController = [[UINavigationController alloc] initWithRootViewController:gradeResultsViewController];
-	gradeResultsNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-	[self presentViewController:gradeResultsNavigationController animated:YES completion:nil];
+	UINavigationController *gradesOverviewNavigationController = [[UINavigationController alloc] initWithRootViewController:gradesOverviewViewController];
+	gradesOverviewNavigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+	[self presentViewController:gradesOverviewNavigationController animated:YES completion:nil];
 }
 
 - (IBAction)showFetchNewGradeResultsSetting:(id)sender {
 	UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	actionSheet.view.tintColor = [UIColor th_primaryColor];
-	UIAlertAction *every15MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every15Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsEvery15Minutes;
-		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsEvery15Minutes];
+	void (^actionCallback)(THFetchNewGradeResultsOption) = ^(THFetchNewGradeResultsOption option) {
+		[THSettings sharedInstance].fetchNewGradeResultsSetting = option;
+		[self updateFetchNewGradeResultsSettingButtonWithOption:option];
 		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
+	};
+	UIAlertAction *every15MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every15Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		actionCallback(THFetchNewGradeResultsEvery15Minutes);
 	}];
 	[actionSheet addAction:every15MinutesAction];
 	UIAlertAction *every30MinutesAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.every30Minutes", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsEvery30Minutes;
-		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsEvery30Minutes];
-		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
+		actionCallback(THFetchNewGradeResultsEvery30Minutes);
 	}];
 	[actionSheet addAction:every30MinutesAction];
 	UIAlertAction *hourlyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"main.fetchNewGradeResultsSetting.hourly", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		[THSettings sharedInstance].fetchNewGradeResultsSetting = THFetchNewGradeResultsHourly;
-		[self updateFetchNewGradeResultsSettingButtonWithOption:THFetchNewGradeResultsHourly];
-		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:[THSettings sharedInstance].fetchNewGradeResultsTimeInterval];
+		actionCallback(THFetchNewGradeResultsHourly);
 	}];
 	[actionSheet addAction:hourlyAction];
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"common.cancel", nil) style:UIAlertActionStyleCancel handler:nil];
@@ -162,6 +211,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 - (IBAction)signOut:(id)sender {
 	[[THSettings sharedInstance] reset];
 	[self updateLastFetchLabelWithDate:nil];
+	[self updateFetchNowButtonWithLoggedIn:NO];
 	[self updateShowGradesOverviewButtonWithLoggedIn:NO];
 	[self updateSignOutButtonWithLoggedIn:NO];
 	[self updateLoggedInLabelWithUsername:nil];
@@ -182,6 +232,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 			[THSettings sharedInstance].password = password;
 			[THSettings sharedInstance].lastHashedResults = [gradeResults th_sha1];
 			[weakSelf updateLastFetchLabelWithDate:fetchDate];
+			[weakSelf updateFetchNowButtonWithLoggedIn:YES];
 			[weakSelf updateShowGradesOverviewButtonWithLoggedIn:YES];
 			[weakSelf updateSignOutButtonWithLoggedIn:YES];
 			[weakSelf updateLoggedInLabelWithUsername:username];
