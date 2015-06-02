@@ -6,19 +6,20 @@
   Copyright (c) 2015 tobiha.de. All rights reserved.
 */
 
-"common.cancel" = "Abbrechen";
-
 "notification.gradeResultsUpdated" = "Dein Notenspiegel wurde aktualisiert.";
+
+"alert.changeDetected.title" = "Hurra!";
+"alert.changeDetected.message" = "Es wurde eine Änderung in deinem Notenspiegel festgestellt.";
+"alert.changeDetected.showGradesOverview" = "Notenspiegel anzeigen";
+"alert.changeDetected.cancel" = "Danke, sissy!";
+"alert.noChangeDetected.title" = "Alles beim Alten";
+"alert.noChangeDetected.message" = "Dein Notenspiegel hat sich nicht verändert.";
+"alert.noChangeDetected.cancel" = "Schade!";
 
 "main.lastFetch" = "Letzter Abruf: %@";
 "main.lastFetch.never" = "Nie";
 "main.fetchNow" = "Jetzt abrufen";
-"main.fetchNow.notification.changeDetected" = "Es wurde eine Änderung in deinem Notenspiegel festgestellt.";
-"main.fetchNow.notification.noChangeDetected" = "Dein Notenspiegel hat sich nicht verändert.";
 "main.showGradesOverview" = "Notenspiegel anzeigen";
-"main.fetchMode" = "Abrufmodus: %@";
-"main.fetchMode.background" = "Hintergrund";
-"main.fetchMode.manual" = "Manuell";
 "main.signOut" = "Ausloggen";
 "main.loggedIn" = "Eingeloggt als %@";
 
@@ -29,7 +30,7 @@
 
 "gradesOverview.title" = "Notenspiegel";
 
-"info.title" = "Über sissy";
+"info.title" = "Version %@ (%@)";
 
 "XLFormViewController_ValidationErrorTitle" = "Hoppla!";
 "%@ can't be empty" = "%@ muss ausgefüllt werden.";

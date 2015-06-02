@@ -15,13 +15,17 @@
 
 @implementation THAppDelegate
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+	return YES;
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 	if (![THSettings sharedInstance].loggedIn) {
-		[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
 		completionHandler(UIBackgroundFetchResultFailed);
 		return;
 	}

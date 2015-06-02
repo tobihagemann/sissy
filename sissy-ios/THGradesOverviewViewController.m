@@ -19,7 +19,11 @@
 
 	self.navigationItem.title = NSLocalizedString(@"gradesOverview.title", nil);
 
-	[self loadGradeResults];
+	if (self.gradeResults) {
+		[self loadGradesOverviewWithGradeResults:self.gradeResults];
+	} else {
+		[self loadGradeResults];
+	}
 }
 
 - (void)loadGradeResults {

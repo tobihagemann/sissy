@@ -12,7 +12,6 @@
 #import "GVUserDefaults+THSettings.h"
 
 NSString *const kTHSettingsLastFetchDateKey = @"lastFetchDate";
-NSString *const kTHSettingsFetchModeKey = @"fetchMode";
 NSString *const kTHSettingsUsernameKey = @"username";
 NSString *const kTHSettingsPasswordKey = @"password";
 NSString *const kTHSettingsLoggedInKey = @"loggedIn";
@@ -34,14 +33,6 @@ NSString *const kTHSettingsLoggedInKey = @"loggedIn";
 
 - (void)setLastFetchDate:(NSDate *)lastFetchDate {
 	[GVUserDefaults standardUserDefaults].lastFetchDate = lastFetchDate;
-}
-
-- (THFetchMode)fetchMode {
-	return [GVUserDefaults standardUserDefaults].fetchMode;
-}
-
-- (void)setFetchMode:(THFetchMode)fetchMode {
-	[GVUserDefaults standardUserDefaults].fetchMode = fetchMode;
 }
 
 - (NSString *)username {

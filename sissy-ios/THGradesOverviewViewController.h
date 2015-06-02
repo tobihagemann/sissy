@@ -13,5 +13,6 @@ typedef void (^THGradeResultsCallback)(NSString *gradeResults);
 @interface THGradesOverviewViewController : THWebViewController
 
 @property (nonatomic, strong) THGradeResultsCallback callback;
+@property (nonatomic, strong) NSString *gradeResults;
 
 @end

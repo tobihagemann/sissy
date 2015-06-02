@@ -11,7 +11,6 @@
 @implementation GVUserDefaults (THSettings)
 
 @dynamic lastFetchDate;
-@dynamic fetchMode;
 @dynamic username;
 @dynamic lastHashedResults;
 

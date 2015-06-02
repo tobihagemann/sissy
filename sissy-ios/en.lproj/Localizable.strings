@@ -6,19 +6,20 @@
   Copyright (c) 2015 tobiha.de. All rights reserved.
 */
 
-"common.cancel" = "Cancel";
-
 "notification.gradeResultsUpdated" = "Your grade results were updated.";
+
+"alert.changeDetected.title" = "Woohoo!";
+"alert.changeDetected.message" = "A change in your grade results has been detected.";
+"alert.changeDetected.showGradesOverview" = "Show Overview of Grades";
+"alert.changeDetected.cancel" = "Thanks, sissy!";
+"alert.noChangeDetected.title" = "Same Old, Same Old";
+"alert.noChangeDetected.message" = "There were no changes in your grade results.";
+"alert.noChangeDetected.cancel" = "Bummer!";
 
 "main.lastFetch" = "Last Fetch: %@";
 "main.lastFetch.never" = "Never";
 "main.fetchNow" = "Fetch Now";
-"main.fetchNow.notification.changeDetected" = "A change in your grade results has been detected.";
-"main.fetchNow.notification.noChangeDetected" = "There were no changes in your grade results.";
 "main.showGradesOverview" = "Show Overview of Grades";
-"main.fetchMode" = "Fetch Mode: %@";
-"main.fetchMode.background" = "Background";
-"main.fetchMode.manual" = "Manual";
 "main.signOut" = "Sign Out";
 "main.loggedIn" = "Logged in as %@";
 
@@ -29,7 +30,7 @@
 
 "gradesOverview.title" = "Overview of Grades";
 
-"info.title" = "About sissy";
+"info.title" = "Version %@ (%@)";
 
 "XLFormViewController_ValidationErrorTitle" = "Whoops!";
 "%@ can't be empty" = "%@ can't be empty.";

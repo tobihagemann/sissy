@@ -8,15 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, THFetchMode) {
-	THFetchModeBackground,
-	THFetchModeManual
-};
-
 @interface THSettings : NSObject
 
 @property (nonatomic, weak) NSDate *lastFetchDate;
-@property (nonatomic, assign) THFetchMode fetchMode;
 @property (nonatomic, weak) NSString *username;
 @property (nonatomic, weak) NSString *password;
 @property (nonatomic, weak) NSString *lastHashedResults;

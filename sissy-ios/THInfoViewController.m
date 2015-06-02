@@ -15,7 +15,9 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	self.navigationItem.title = NSLocalizedString(@"info.title", nil);
+	NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+	NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	self.navigationItem.title = [NSString stringWithFormat:NSLocalizedString(@"info.title", nil), version, build];
 
 	[self loadInfo];
 }
