@@ -15,7 +15,6 @@
 		747FF06C1B112A0500987FED /* info.html in Resources */ = {isa = PBXBuildFile; fileRef = 747FF06E1B112A0500987FED /* info.html */; };
 		747FF0721B112C0100987FED /* THWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747FF0711B112C0100987FED /* THWebViewController.m */; };
 		747FF0741B112EB300987FED /* graderesults.html in Resources */ = {isa = PBXBuildFile; fileRef = 747FF0731B112EB300987FED /* graderesults.html */; };
-		747FF0761B112F8500987FED /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 747FF0751B112F8500987FED /* style.css */; };
 		74AC27781B0F2A5100EECF30 /* THSissyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AC27771B0F2A5100EECF30 /* THSissyController.m */; };
 		74C43F9A1B0F7C4E00464C34 /* THMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F991B0F7C4E00464C34 /* THMainViewController.m */; };
 		74C43F9F1B0F832000464C34 /* GVUserDefaults+THSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C43F9E1B0F832000464C34 /* GVUserDefaults+THSettings.m */; };
@@ -65,7 +64,6 @@
 		747FF0701B112C0100987FED /* THWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWebViewController.h; sourceTree = "<group>"; };
 		747FF0711B112C0100987FED /* THWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWebViewController.m; sourceTree = "<group>"; };
 		747FF0731B112EB300987FED /* graderesults.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = graderesults.html; sourceTree = "<group>"; };
-		747FF0751B112F8500987FED /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		74AC27761B0F2A5100EECF30 /* THSissyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSissyController.h; sourceTree = "<group>"; };
 		74AC27771B0F2A5100EECF30 /* THSissyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSissyController.m; sourceTree = "<group>"; };
 		74C43F951B0F68BC00464C34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 		74C43FB41B0FA1A500464C34 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				747FF0751B112F8500987FED /* style.css */,
 				747FF0731B112EB300987FED /* graderesults.html */,
 				747FF06E1B112A0500987FED /* info.html */,
 			);
@@ -364,7 +361,6 @@
 			files = (
 				74E6DD561B0F12100068C672 /* Main.storyboard in Resources */,
 				747FF06C1B112A0500987FED /* info.html in Resources */,
-				747FF0761B112F8500987FED /* style.css in Resources */,
 				74C43FA31B0F8C8600464C34 /* Localizable.strings in Resources */,
 				74E6DD5B1B0F12100068C672 /* LaunchScreen.xib in Resources */,
 				74E6DD581B0F12100068C672 /* Images.xcassets in Resources */,

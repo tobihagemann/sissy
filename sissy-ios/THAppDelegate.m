@@ -16,12 +16,12 @@
 @implementation THAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	[[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+	[application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 	return YES;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	application.applicationIconBadgeNumber = 0;
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -44,19 +44,19 @@
 				completionHandler(UIBackgroundFetchResultNoData);
 			} else {
 				[THSettings sharedInstance].lastHashedResults = hashedResults;
-				[weakSelf showGradeResultsUpdatedNotification];
+				[weakSelf showGradeResultsUpdatedNotificationForApplication:application];
 				completionHandler(UIBackgroundFetchResultNewData);
 			}
 		}
 	}];
 }
 
-- (void)showGradeResultsUpdatedNotification {
+- (void)showGradeResultsUpdatedNotificationForApplication:(UIApplication *)application {
 	UILocalNotification *localNotification = [[UILocalNotification alloc] init];
 	localNotification.alertBody = NSLocalizedString(@"notification.gradeResultsUpdated", nil);
 	localNotification.soundName = UILocalNotificationDefaultSoundName;
 	localNotification.applicationIconBadgeNumber = 1;
-	[[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+	[application presentLocalNotificationNow:localNotification];
 }
 
 @end

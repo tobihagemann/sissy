@@ -20,7 +20,7 @@
                                 <rect key="frame" x="199" y="40" width="202" height="40"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGZ-kB-CRn">
-                                <rect key="frame" x="0.0" y="250" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="247" width="600" height="107"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Fetch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mpg-3X-jg0">
                                         <rect key="frame" x="262" y="0.0" width="77" height="20"/>
@@ -28,7 +28,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6e-hh-bMp">
-                                        <rect key="frame" x="261" y="28" width="79" height="32"/>
+                                        <rect key="frame" x="261" y="35" width="79" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Fetch Now">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,7 +38,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaR-LA-KBO">
-                                        <rect key="frame" x="206" y="68" width="189" height="32"/>
+                                        <rect key="frame" x="206" y="75" width="189" height="32"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <state key="normal" title="Show Overview of Grades">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,7 +53,7 @@
                                     <constraint firstAttribute="centerX" secondItem="mpg-3X-jg0" secondAttribute="centerX" id="KN1-bJ-Spq"/>
                                     <constraint firstAttribute="centerX" secondItem="vaR-LA-KBO" secondAttribute="centerX" id="MNW-lf-Xnb"/>
                                     <constraint firstItem="vaR-LA-KBO" firstAttribute="top" secondItem="A6e-hh-bMp" secondAttribute="bottom" constant="8" id="UdZ-2G-OOx"/>
-                                    <constraint firstItem="A6e-hh-bMp" firstAttribute="top" secondItem="mpg-3X-jg0" secondAttribute="bottom" constant="8" id="WUw-Hr-Ui8"/>
+                                    <constraint firstItem="A6e-hh-bMp" firstAttribute="top" secondItem="mpg-3X-jg0" secondAttribute="bottom" constant="15" id="WUw-Hr-Ui8"/>
                                     <constraint firstAttribute="centerX" secondItem="A6e-hh-bMp" secondAttribute="centerX" id="fC7-qk-wTG"/>
                                     <constraint firstAttribute="bottom" secondItem="vaR-LA-KBO" secondAttribute="bottom" id="mYT-2G-mws"/>
                                 </constraints>
