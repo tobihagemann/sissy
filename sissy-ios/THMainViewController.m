@@ -8,7 +8,6 @@
 
 #import "THMainViewController.h"
 
-#import <SIAlertView/SIAlertView.h>
 #import <SORelativeDateTransformer/SORelativeDateTransformer.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "NSString+THExtensions.h"
@@ -110,30 +109,29 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 	}
 }
 
-- (void)updateGradeResults:(NSString *)gradeResults {
+- (void)updateGradeResults:(NSString *)gradeResults fromViewController:(UIViewController *)presentingViewController {
 	NSDate *fetchDate = [NSDate date];
 	[THSettings sharedInstance].lastFetchDate = fetchDate;
 	[self updateLastFetchLabelWithDate:fetchDate];
 	BOOL gradeResultsHaveChanged = [self detectChangeInGradeResults:gradeResults];
 	[THSettings sharedInstance].lastHashedResults = [gradeResults th_sha1];
 
-	SIAlertView *alert;
+	UIAlertController *alert;
 	if (gradeResultsHaveChanged) {
-		alert = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"alert.changeDetected.title", nil) andMessage:NSLocalizedString(@"alert.changeDetected.message", nil)];
+		alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert.changeDetected.title", nil) message:NSLocalizedString(@"alert.changeDetected.message", nil) preferredStyle:UIAlertControllerStyleAlert];
 		__weak typeof(self) weakSelf = self;
-		[alert addButtonWithTitle:NSLocalizedString(@"alert.changeDetected.showGradesOverview", nil) type:SIAlertViewButtonTypeDefault handler:^(SIAlertView *alertView) {
+		[alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"alert.changeDetected.showGradesOverview", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
 			[weakSelf showGradesOverviewWithGradeResults:gradeResults];
-		}];
-		[alert addButtonWithTitle:NSLocalizedString(@"alert.changeDetected.cancel", nil) type:SIAlertViewButtonTypeCancel handler:nil];
+		}]];
+		[alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"alert.changeDetected.cancel", nil) style:UIAlertActionStyleCancel handler:nil]];
 	} else {
-		alert = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"alert.noChangeDetected.title", nil) andMessage:NSLocalizedString(@"alert.noChangeDetected.message", nil)];
-		[alert addButtonWithTitle:NSLocalizedString(@"alert.noChangeDetected.cancel", nil) type:SIAlertViewButtonTypeCancel handler:nil];
+		alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"alert.noChangeDetected.title", nil) message:NSLocalizedString(@"alert.noChangeDetected.message", nil) preferredStyle:UIAlertControllerStyleAlert];
+		[alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"alert.noChangeDetected.cancel", nil) style:UIAlertActionStyleCancel handler:nil]];
 	}
-	alert.transitionStyle = SIAlertViewTransitionStyleBounce;
-	alert.backgroundStyle = SIAlertViewBackgroundStyleSolid;
-	alert.buttonsListStyle = SIAlertViewButtonsListStyleRows;
-	alert.titleColor = [UIColor th_primaryColor];
-	[alert show];
+	alert.view.tintColor = [UIColor th_primaryColor];
+	[presentingViewController presentViewController:alert animated:YES completion:^{
+		alert.view.tintColor = [UIColor th_primaryColor];
+	}];
 }
 
 - (BOOL)detectChangeInGradeResults:(NSString *)gradeResults {
@@ -158,7 +156,7 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 		if (error) {
 			[THNotificationView showErrorInViewController:weakSelf message:error.localizedDescription];
 		} else {
-			[weakSelf updateGradeResults:gradeResults];
+			[weakSelf updateGradeResults:gradeResults fromViewController:weakSelf];
 		}
 	}];
 }
@@ -170,8 +168,9 @@ NSString *const kTHMainShowLoginSegueIdentifier = @"showLogin";
 - (void)showGradesOverviewWithGradeResults:(NSString *)gradeResults {
 	THGradesOverviewViewController *gradesOverviewViewController = [[THGradesOverviewViewController alloc] init];
 	__weak typeof(self) weakSelf = self;
+	__weak THGradesOverviewViewController *weakGradesOverviewViewController = gradesOverviewViewController;
 	gradesOverviewViewController.callback = ^(NSString *gradeResults) {
-		[weakSelf updateGradeResults:gradeResults];
+		[weakSelf updateGradeResults:gradeResults fromViewController:weakGradesOverviewViewController];
 	};
 	gradesOverviewViewController.gradeResults = gradeResults;
 	UINavigationController *gradesOverviewNavigationController = [[UINavigationController alloc] initWithRootViewController:gradesOverviewViewController];
